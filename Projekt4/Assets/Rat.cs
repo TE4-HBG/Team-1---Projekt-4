@@ -16,11 +16,6 @@ public class Rat : MonoBehaviour
     private float playerSpeed = 3.5f;
     
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        controller = gameObject.AddComponent<CharacterController>();
-    }
 
     // Update is called once per frame
     void Update()
