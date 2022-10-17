@@ -13,18 +13,18 @@ public class Rat : MonoBehaviour
     public CharacterController controller;
     //private Vector3 playerVelocity;
     [SerializeField]
-    private float playerSpeed = 3.5f;
+    private float basePlayerSpeed = 8f;
+    [SerializeField]
+    private float sprintMultiplier = 1.5f;
 
     // Update is called once per frame
     void Update()
     {
+        float playerSpeed = basePlayerSpeed;
+        
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            playerSpeed = 5.5f;
-        }
-        else
-        {
-            playerSpeed = 2.5f;
+            playerSpeed *= sprintMultiplier;
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
