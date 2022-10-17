@@ -33,7 +33,7 @@ public class RatMovment : MonoBehaviour
             playerSpeed = 2.5f;
         }
 
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             powerUpFunction(this);
         }
