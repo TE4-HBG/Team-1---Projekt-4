@@ -10,6 +10,7 @@ public class RatMovment : MonoBehaviour
 
     public CharacterController controller;
     //private Vector3 playerVelocity;
+    [SerializeField]
     private float playerSpeed = 3.5f;
     private float jumpHeight = 1.0f;
 
