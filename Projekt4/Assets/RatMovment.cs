@@ -32,16 +32,11 @@ public class RatMovment : MonoBehaviour
             playerSpeed = 2.5f;
         }
 
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             UsePowerUp();
         }
 
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         controller.Move(move * Time.deltaTime * playerSpeed);
