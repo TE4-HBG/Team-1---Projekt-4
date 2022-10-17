@@ -53,11 +53,12 @@ public class RatMovment : MonoBehaviour
         // move
         controller.Move(move);
 
+        /*
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = move;
         }
-
+        */
         // Changes the height position of the player..
 
 
