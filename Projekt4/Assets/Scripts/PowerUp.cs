@@ -8,6 +8,11 @@ public class PowerUp : MonoBehaviour
 
     public static void Jump(Rat rat)
     {
-        Debug.Log("Rat did a big jump at " + rat.transform.position.ToString());
+        float jumpHeight = 2.5f;
+        if (rat.controller.isGrounded)
+        {
+            rat.controller.Move(jumpHeight * Time.deltaTime * Physics.gravity);
+            Debug.Log("Rat did a big jump");
+        }
     }
 }
