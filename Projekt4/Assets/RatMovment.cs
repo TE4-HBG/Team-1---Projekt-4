@@ -12,8 +12,7 @@ public class RatMovment : MonoBehaviour
     //private Vector3 playerVelocity;
     [SerializeField]
     private float playerSpeed = 3.5f;
-    private float jumpHeight = 1.0f;
-
+    
 
     // Start is called before the first frame update
     void Start()
