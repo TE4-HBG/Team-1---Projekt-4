@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using System;
 
 [RequireComponent(typeof(CharacterController))]
 public class Rat : MonoBehaviour
 {
+    //private Action<Rat> powerUpFunction = PowerUp.Jump;
     private PowerUpFunction powerUpFunction = PowerUp.Jump;
 
     public CharacterController controller;
