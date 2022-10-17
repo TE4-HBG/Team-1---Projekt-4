@@ -5,4 +5,9 @@ public class PowerUp : MonoBehaviour
 {
     public Sprite sprite;
     public PowerUpFunction powerUpFunction;
+
+    public static void Jump(RatMovment rat)
+    {
+        Debug.Log("Rat did a big jump at " + rat.transform.position.ToString());
+    }
 }

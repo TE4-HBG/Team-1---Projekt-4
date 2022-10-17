@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
+[RequireComponent(typeof(CharacterController))]
 public class RatMovment : MonoBehaviour
 {
-    private static void JumpPowerUp(RatMovment rat)
-    {
-        Debug.Log("JUMP!");
-    }
-
-    private PowerUpFunction powerUpFunction = JumpPowerUp;
+    private PowerUpFunction powerUpFunction = PowerUp.Jump;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
