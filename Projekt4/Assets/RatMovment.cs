@@ -64,7 +64,7 @@ public class RatMovment : MonoBehaviour
 
         /*
         // why is this here???
-        // this does absolutely nothing!
+        // this does absolutely nothing!!
         controller.Move(playerVelocity * Time.deltaTime);
         */
     }
