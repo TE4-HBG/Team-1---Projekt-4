@@ -50,6 +50,10 @@ public class RatMovment : MonoBehaviour
         // Changes the height position of the player..
 
 
+        /*
+        // why is this here???
+        // this does absolutely nothing!
         controller.Move(playerVelocity * Time.deltaTime);
+        */
     }
 }
