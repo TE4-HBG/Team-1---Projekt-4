@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
 [RequireComponent(typeof(CharacterController))]
-public class RatMovment : MonoBehaviour
+public class Rat : MonoBehaviour
 {
     private PowerUpFunction powerUpFunction = PowerUp.Jump;
 

@@ -1,3 +1,3 @@
 // i fucking hate C#
 
-public delegate void PowerUpFunction(RatMovment rat);
+public delegate void PowerUpFunction(Rat rat);
