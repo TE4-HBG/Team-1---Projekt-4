@@ -14,8 +14,6 @@ public class Rat : MonoBehaviour
     //private Vector3 playerVelocity;
     [SerializeField]
     private float playerSpeed = 3.5f;
-    
-
 
     // Update is called once per frame
     void Update()
