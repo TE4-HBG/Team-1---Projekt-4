@@ -40,7 +40,18 @@ public class RatMovment : MonoBehaviour
 
 
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        // apply gravity
+        move += Physics.gravity;
+
+        // multiply by player speed
+        move *= playerSpeed;
+
+        // multiply by time previous frame took
+        move *= Time.deltaTime;
+
+        // move
+        controller.Move(move);
 
         if (move != Vector3.zero)
         {
