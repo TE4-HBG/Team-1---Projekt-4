@@ -10,7 +10,6 @@ public class RatMovment : MonoBehaviour
 
     public CharacterController controller;
     //private Vector3 playerVelocity;
-    private bool groundedPlayer;
     private float playerSpeed = 3.5f;
     private float jumpHeight = 1.0f;
 
