@@ -5,7 +5,12 @@ using UnityEngine.InputSystem.XR;
 
 public class RatMovment : MonoBehaviour
 {
+    private static void JumpPowerUp(RatMovment rat)
+    {
+        Debug.Log("JUMP!");
+    }
 
+    private PowerUpFunction powerUpFunction = JumpPowerUp;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -34,7 +39,7 @@ public class RatMovment : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.Space))
         {
-            UsePowerUp();
+            powerUpFunction(this);
         }
 
 
@@ -50,9 +55,5 @@ public class RatMovment : MonoBehaviour
 
 
         controller.Move(playerVelocity * Time.deltaTime);
-    }
-    void UsePowerUp()
-    {
-        Debug.Log("Used PowerUp lol");
     }
 }
