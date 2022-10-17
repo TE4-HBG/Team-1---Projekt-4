@@ -9,7 +9,7 @@ public class RatMovment : MonoBehaviour
     private PowerUpFunction powerUpFunction = PowerUp.Jump;
 
     public CharacterController controller;
-    private Vector3 playerVelocity;
+    //private Vector3 playerVelocity;
     private bool groundedPlayer;
     private float playerSpeed = 3.5f;
     private float jumpHeight = 1.0f;
