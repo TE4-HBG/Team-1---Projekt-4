@@ -11,12 +11,16 @@ public class Rat : MonoBehaviour
     private PowerUpFunction powerUpFunction = PowerUp.Jump;
 
     public CharacterController controller;
+
+    //[SerializeField]
+    //private GameObject mesh;
+
     //private Vector3 playerVelocity;
     [SerializeField]
     private float basePlayerSpeed = 8f;
     [SerializeField]
     private float sprintMultiplier = 1.5f;
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -45,9 +49,9 @@ public class Rat : MonoBehaviour
         controller.Move(motion);
 
         /*
-        if (move != Vector3.zero)
+        if (motion != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            mesh.transform.LookAt(transform.position + motion);
         }
         */
         // Changes the height position of the player..
