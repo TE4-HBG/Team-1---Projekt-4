@@ -43,7 +43,7 @@ public class Rat : MonoBehaviour
         
         if (motion != Vector3.zero)
         {
-            mesh.transform.LookAt(transform.position + motion);
+            mesh.transform.forward = -motion;
         }
         
         // Changes the height position of the player..

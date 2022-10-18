@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TileSystem : MonoBehaviour
 {
+    public Vector3 pivot = new Vector3(0.5f, 0.0f, 0.5f);
     public Vector3Int size = new Vector3Int(10,10,1);
     public Vector3 cellSize = Vector3.one;
     public GameObject defaultPrefab;
@@ -19,13 +20,14 @@ public class TileSystem : MonoBehaviour
     private void InitializeInstances()
     {
         instances = new GameObject[size.x, size.y, size.z];
-        for (int z = 0; z < instances.GetLength(2); z++)
+        Vector3Int index = new Vector3Int(0,0,0); 
+        for (index.z = 0; index.z < instances.GetLength(2); index.z++)
         {
-            for (int y = 0; y < instances.GetLength(1); y++)
+            for (index.y = 0; index.y < instances.GetLength(1); index.y++)
             {
-                for (int x = 0; x < instances.GetLength(0); x++)
+                for (index.x = 0; index.x < instances.GetLength(0); index.x++)
                 {
-                    instances[x, y, z] = GameObject.Instantiate(defaultPrefab, Vector3.Scale(cellSize,new Vector3(x, y, z)) + transform.position, Quaternion.identity, transform);
+                    SetTile(index, defaultPrefab);
                 }
             }
         }
@@ -52,9 +54,10 @@ public class TileSystem : MonoBehaviour
     
     public void SetTile(Vector3Int index, GameObject prefab)
     {
+        Vector3 max = Vector3.Scale(cellSize, size);
         Debug.Log(index);
         GameObject.Destroy(instances[index.x, index.y, index.z]);
-        instances[index.x, index.y, index.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, index) + transform.position, Quaternion.identity, transform);
+        instances[index.x, index.y, index.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, index) + transform.position - Vector3.Scale(max,pivot), Quaternion.identity, transform);
 
     }
 
