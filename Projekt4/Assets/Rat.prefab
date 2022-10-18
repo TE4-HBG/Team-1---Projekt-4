@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3098192334556451983}
   m_Layer: 0
   m_Name: Rat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,8 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aa81d48b2f31942a9ee1d24e01b430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 3098192334556451983}
   isGrounded: 0
+  slopeLimit: 45
+  rb: {fileID: 3098192334556451983}
+  collider: {fileID: 0}
 --- !u!136 &970047354907492487
 CapsuleCollider:
   m_ObjectHideFlags: 0
