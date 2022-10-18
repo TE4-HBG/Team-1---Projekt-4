@@ -6,8 +6,14 @@ public class PowerUp : MonoBehaviour
     public Sprite sprite;
     public PowerUpFunction powerUpFunction;
 
-    public static void Jump(RatMovment rat)
+    public static void Jump(Rat rat)
     {
-        Debug.Log("Rat did a big jump at " + rat.transform.position.ToString());
+        float jumpHeight = 2.5f;
+        if (rat.controller.isGrounded)
+        {
+            // f(x)=((x^(2))/(2*9.81))
+            rat.controller.AddForce(-Physics.gravity * jumpHeight + -Physics.gravity);
+            Debug.Log("Rat did a big jump");
+        }
     }
 }
