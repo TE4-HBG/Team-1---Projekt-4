@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using System;
 
-[RequireComponent(typeof(CharacterController))]
 public class Rat : MonoBehaviour
 {
     //private Action<Rat> powerUpFunction = PowerUp.Jump;
     private PowerUpFunction powerUpFunction = PowerUp.Jump;
 
-    public CharacterController controller;
+    public RatController controller;
 
     //[SerializeField]
     //private GameObject mesh;
@@ -37,15 +36,8 @@ public class Rat : MonoBehaviour
         }
 
 
-        Vector3 motion = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * playerSpeed;
+        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        // apply gravity
-        motion += Physics.gravity;
-
-        // multiply by time previous frame took
-        motion *= Time.deltaTime;
-
-        // move
         controller.Move(motion);
 
         /*

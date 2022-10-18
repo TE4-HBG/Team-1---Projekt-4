@@ -11,7 +11,8 @@ public class PowerUp : MonoBehaviour
         float jumpHeight = 2.5f;
         if (rat.controller.isGrounded)
         {
-            rat.controller.Move(jumpHeight * Time.deltaTime * Physics.gravity);
+            // f(x)=((x^(2))/(2*9.81))
+            rat.controller.AddForce(-Physics.gravity * jumpHeight + -Physics.gravity);
             Debug.Log("Rat did a big jump");
         }
     }
