@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class godControll : MonoBehaviour
+public class God : MonoBehaviour
 {
     const int TILE_LAYER = 3;
 
