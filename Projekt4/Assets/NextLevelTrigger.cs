@@ -5,24 +5,23 @@ using UnityEngine;
 public class NextLevelTrigger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject level;
-    [SerializeField]
     private Vector3 offset = new Vector3(0,0,20);
-    [SerializeField]
-    private GameObject Kamera;
-
+    
     
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 levelPos = transform.parent.position;
+        
+        
+        Vector3 nextLevelPos = GameManager.instance.currentLevel.transform.position + offset;
 
-        Vector3 nextLevelPos = levelPos + offset;
+        Level nextLevel = Instantiate(GameManager.instance.levelPrefab, nextLevelPos, Quaternion.identity).GetComponent<Level>();
+        nextLevel.number = GameManager.instance.currentLevel.number + 1;
+
+        GameManager.instance.camera.transform.position = nextLevel.transform.position + nextLevel.cameraOffset;
         
-        GameObject nextLevel =  Instantiate(level, nextLevelPos, Quaternion.identity);
         
-        Kamera.transform.position += offset;
-        
-        
-        GameObject.FindGameObjectWithTag("Player").transform.position = nextLevel.transform.Find("Entrance").position;
+        GameManager.instance.rat.transform.position = nextLevel.transform.position + nextLevel.entranceOffset;
+
+        GameManager.instance.currentLevel = nextLevel;
     }
 }
