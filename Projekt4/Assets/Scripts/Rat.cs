@@ -14,6 +14,7 @@ public class Rat : MonoBehaviour
     [SerializeField]
     private GameObject mesh;
 
+
     //private Vector3 playerVelocity;
     [SerializeField]
     private float basePlayerSpeed = 8f;
