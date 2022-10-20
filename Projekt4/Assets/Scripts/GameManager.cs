@@ -34,4 +34,8 @@ public class GameManager : MonoBehaviour
 
         
     }
+    public static void StartGame()
+    {
+
+    }
 }
