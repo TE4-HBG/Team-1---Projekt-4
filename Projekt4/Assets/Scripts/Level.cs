@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Level : MonoBehaviour
 {
-    public ulong number = 0;
+    public int number = 0;
     public Vector3 entranceOffset;
     public Vector3 cameraOffset;
 
