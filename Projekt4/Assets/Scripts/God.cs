@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class God : MonoBehaviour
 {
-    const int TILE_LAYER = 3;
 
     public TileSystem tileSystem;
     public Camera cam;
@@ -20,7 +19,7 @@ public class God : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             //Debug.Log(mousePos);
             Ray ray = cam.ScreenPointToRay(mousePos);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, 1 << TILE_LAYER))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, 1 << Layer.Tile))
             {
                 Debug.Log(hitInfo.collider.isTrigger);
                 Debug.Log(hitInfo.transform);
