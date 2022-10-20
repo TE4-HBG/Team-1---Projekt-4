@@ -342,15 +342,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1490992312098556638, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.646713
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1490992312098556638, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -33.273315
+      value: 6.1
       objectReference: {fileID: 0}
     - target: {fileID: 1490992312098556638, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 56.226387
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1490992312098556638, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -388,14 +388,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 894925832}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: currentLevel
-      value: 
-      objectReference: {fileID: 1780554630}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: levels.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: levels.Array.data[0]
       value: 
