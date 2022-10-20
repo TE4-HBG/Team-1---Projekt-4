@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SoundButton : MonoBehaviour
 {
+    public AudioSource audioSource;
     public Image soundOn;
     public Image soundOff;
     public void Press()
@@ -13,11 +14,13 @@ public class SoundButton : MonoBehaviour
         {
             soundOn.gameObject.SetActive(false);
             soundOff.gameObject.SetActive(true);
+            audioSource.Pause();
         }
         else
         {
             soundOn.gameObject.SetActive(true);
             soundOff.gameObject.SetActive(false);
+            audioSource.Play();
         }
     }
 }
