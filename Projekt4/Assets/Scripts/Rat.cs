@@ -11,8 +11,9 @@ public class Rat : MonoBehaviour
 
     public RatController controller;
 
-    //[SerializeField]
-    //private GameObject mesh;
+    [SerializeField]
+    private GameObject mesh;
+
 
     //private Vector3 playerVelocity;
     [SerializeField]
@@ -40,12 +41,12 @@ public class Rat : MonoBehaviour
 
         controller.Move(motion);
 
-        /*
+        
         if (motion != Vector3.zero)
         {
-            mesh.transform.LookAt(transform.position + motion);
+            mesh.transform.forward = -motion;
         }
-        */
+        
         // Changes the height position of the player..
 
 

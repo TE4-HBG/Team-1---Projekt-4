@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PowerUp : MonoBehaviour
+
+public class PowerUpData
 {
     public Sprite sprite;
+    public string name;
     public PowerUpFunction powerUpFunction;
+}
+public class PowerUp : MonoBehaviour
+{
+    public PowerUpData powerUpData;
 
     public static void Jump(Rat rat)
     {
