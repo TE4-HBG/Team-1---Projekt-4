@@ -110,6 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20143c62ad9ea7f42a68b79f02e446e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 5682869743420289951, guid: 3038ca44943bc824386baeed799e7e97, type: 3}
-  offset: {x: 0, y: 0, z: 40}
-  Kamera: {fileID: 0}
+  offset: {x: 0, y: 0, z: 60}
