@@ -5,23 +5,14 @@ using UnityEngine;
 public class Exit : MonoBehaviour
 {
     [SerializeField]
-    private Vector3 offset = new Vector3(0,0,20);
+    private Vector3 offset = new Vector3(0,0,60);
     
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider possiblePlayer)
     {
-        
-        
-        Vector3 nextLevelPos = GameManager.instance.currentLevel.transform.position + offset;
-
-        Level nextLevel = Instantiate(GameManager.instance.levelPrefab, nextLevelPos, Quaternion.identity).GetComponent<Level>();
-        nextLevel.number = GameManager.instance.currentLevel.number + 1;
-
-        GameManager.instance.camera.transform.position = nextLevel.transform.position + nextLevel.cameraOffset;
-        
-        
-        GameManager.instance.rat.transform.position = nextLevel.transform.position + nextLevel.entranceOffset;
-
-        GameManager.instance.currentLevel = nextLevel;
+        if(possiblePlayer.gameObject.layer == Layer.Player)
+        {
+            GameManager.NextLevel(offset);
+        }
     }
 }
