@@ -144,7 +144,6 @@ GameObject:
   m_Component:
   - component: {fileID: 894925833}
   - component: {fileID: 894925832}
-  - component: {fileID: 894925834}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -393,6 +392,14 @@ PrefabInstance:
       propertyPath: currentLevel
       value: 
       objectReference: {fileID: 1780554630}
+    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
+      propertyPath: levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 1780554630}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
 --- !u!1001 &5682869744442547172
@@ -402,6 +409,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2377764558293862308, guid: 3038ca44943bc824386baeed799e7e97, type: 3}
+      propertyPath: offset.z
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402168091420632765, guid: 3038ca44943bc824386baeed799e7e97, type: 3}
+      propertyPath: m_Size.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402168091420632765, guid: 3038ca44943bc824386baeed799e7e97, type: 3}
+      propertyPath: m_Center.y
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5682869743420289947, guid: 3038ca44943bc824386baeed799e7e97, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -470,6 +489,14 @@ PrefabInstance:
     - target: {fileID: 8235711538276433291, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
       propertyPath: m_Name
       value: Rat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235711538276433291, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235711538276433291, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8235711538276433292, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
       propertyPath: m_RootOrder
