@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject level;
     public void ExitButton()
     {
         Application.Quit();
@@ -14,7 +13,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        Instantiate(level);
+        GameManager.StartGame();
         this.gameObject.SetActive(false);
     }
 }
