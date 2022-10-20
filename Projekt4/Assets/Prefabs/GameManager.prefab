@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8466e3a8024c59a478066627a2504379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levels:
-  - {fileID: 0}
+  levels: []
   levelPrefab: {fileID: 5682869743420289951, guid: 3038ca44943bc824386baeed799e7e97, type: 3}
+  ratPrefab: {fileID: 8235711538276433291, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
   rat: {fileID: 0}
   camera: {fileID: 0}

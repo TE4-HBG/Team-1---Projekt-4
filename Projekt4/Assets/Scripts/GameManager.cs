@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
 
     
     public List<Level> levels;
+    #region PREFABS
     public GameObject levelPrefab;
+    public GameObject ratPrefab;
+    #endregion
     public Rat rat;
     public Camera camera;
     public static void NextLevel(Vector3 offset)
@@ -36,6 +39,10 @@ public class GameManager : MonoBehaviour
     }
     public static void StartGame()
     {
+        Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
+        instance.levels.Add(level);
 
+        instance.rat = Instantiate(instance.ratPrefab, level.transform.position + level.entranceOffset, Quaternion.identity).GetComponent<Rat>();
+        instance.camera.transform.position = level.transform.position + level.cameraOffset;
     }
 }
