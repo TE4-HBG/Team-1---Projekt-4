@@ -856,7 +856,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 5a3a829767452204a9bf1f6846a31a0b, type: 3}
   - {fileID: 0}
 --- !u!82 &735842939
 AudioSource:
