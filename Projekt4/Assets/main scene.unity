@@ -2538,9 +2538,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: JukeBox
       objectReference: {fileID: 0}
-    - target: {fileID: 8935029590780731854, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
-      propertyPath: _values.Array.data[7]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1f49ad27b48037c4ba252221fc7f0d2f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
