@@ -34,6 +34,7 @@ public class Rat : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             powerUpFunction(this);
+            SoundEffectManager.PlaySoundEffect(SoundEffect.CollectPowerup);
         }
 
 
