@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7869377970983898843}
   - component: {fileID: 1743922722001113604}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: EyeL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4874126678125670354, guid: 48759225030b3a949ac9896553ad9127, type: 3}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 5673524443254706209}
   - component: {fileID: 2074735847741190222}
   m_Layer: 0
-  m_Name: Cube.011
+  m_Name: :)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 48759225030b3a949ac9896553ad9127, type: 3}
+  - {fileID: -6126091556477775235, guid: cc5f90aa0541d4842a2c05a3fececc76, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 753194668894142283}
   - component: {fileID: 5515657424764446426}
   m_Layer: 0
-  m_Name: Cube.001
+  m_Name: EyeR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4874126678125670354, guid: 48759225030b3a949ac9896553ad9127, type: 3}
+  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  slopeLimit: 45
+  slopeLimit: 22.5
   rb: {fileID: 3098192334556451983}
   collider: {fileID: 0}
 --- !u!136 &970047354907492487
