@@ -13,10 +13,29 @@ public class TileSystem : MonoBehaviour
 
     private GameObject[,,] instances;
 
+    private Vector3 max => Vector3.Scale(cellSize, size);
     private void Start()
     {
         InitializeInstances();
     }
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        Vector3Int index = new Vector3Int(0, 0, 0);
+        for (index.z = 0; index.z < size.z; index.z++)
+        {
+            for (index.y = 0; index.y < size.y; index.y++)
+            {
+                for (index.x = 0; index.x < size.x; index.x++)
+                {
+                    Gizmos.DrawWireCube(Vector3.Scale(cellSize, index) + transform.position, cellSize);
+                }
+            }
+        }
+
+    }
+
     private void InitializeInstances()
     {
         instances = new GameObject[size.x, size.y, size.z];
@@ -54,7 +73,6 @@ public class TileSystem : MonoBehaviour
     
     public void SetTile(Vector3Int index, GameObject prefab)
     {
-        Vector3 max = Vector3.Scale(cellSize, size);
         Debug.Log(index);
         GameObject.Destroy(instances[index.x, index.y, index.z]);
         instances[index.x, index.y, index.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, index) + transform.position - Vector3.Scale(max,pivot), Quaternion.identity, transform);
