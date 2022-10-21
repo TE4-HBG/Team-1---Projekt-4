@@ -13,8 +13,8 @@ public enum SoundEffect
     UsePowerup,
     MoveAround,
     GameOver,
-    RatJump
-
+    RatJump,
+    Secret,
 }
 
 public class SoundEffectManager : MonoBehaviour

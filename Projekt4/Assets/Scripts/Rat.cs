@@ -34,7 +34,6 @@ public class Rat : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             powerUpFunction(this);
-            SoundEffectManager.PlaySoundEffect(SoundEffect.CollectPowerup);
         }
 
 
@@ -47,14 +46,7 @@ public class Rat : MonoBehaviour
         {
             mesh.transform.forward = -motion;
         }
-        
-        // Changes the height position of the player..
 
-
-        /*
-        // why is this here???
-        // this does absolutely nothing!!
-        controller.Move(playerVelocity * Time.deltaTime);
-        */
+        if (Input.GetKeyDown(KeyCode.Home)) SoundEffectManager.PlaySoundEffect(SoundEffect.Secret);
     }
 }
