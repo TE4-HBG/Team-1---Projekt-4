@@ -848,10 +848,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffectPlayer: {fileID: 735842939}
-  _keys: 00000000010000000200000003000000
+  _keys: 0000000001000000020000000300000004000000050000000600000007000000
   _values:
   - {fileID: 0}
   - {fileID: 8300000, guid: 9e092e6065b95734caf2e0858a3c653d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!82 &735842939
