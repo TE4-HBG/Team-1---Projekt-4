@@ -5,7 +5,9 @@ using TMPro;
 
 // may god have mercy on my soul
 using System.Linq;
-
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,8 +58,8 @@ public class GameManager : MonoBehaviour
     {
         Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
         instance.levels.Add(level);
-
-        ResetRat(level.transform.position + level.entranceOffset);
+        instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
+        instance.rat.transform.position = level.transform.position + level.entranceOffset;
 
         StartTimer();
     }
@@ -82,14 +84,30 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         UpdateTimer();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
     }
     public static void CalculateScore()
     {
-        instance.score += instance.maxTime - instance.timer;
-        instance.scoreUI.text = instance.score.ToString("F0", System.Globalization.CultureInfo.InvariantCulture);
+        Score += instance.maxTime - instance.timer;
+    }
+    public static float Score 
+    {
+        get => instance.score;
+        set
+        {
+            instance.score += value;
+            instance.scoreUI.text = instance.score.ToString("F0", System.Globalization.CultureInfo.InvariantCulture);
+        }
+        
     }
     private static void RestartGame()
     {
+        ResetTimer();
+        Score = 0f;
         for (int i = 0; i < instance.levels.Count; i++)
         {
             Destroy(instance.levels[i].gameObject);
@@ -100,10 +118,13 @@ public class GameManager : MonoBehaviour
 
 
         ResetRat(level.transform.position + level.entranceOffset);
+
+        StartTimer();
     }
     public static void ResetRat(Vector3 position)
     {
-        Destroy(instance.rat);
+        GameObject rat = instance.rat.gameObject;
+        Destroy(rat);
         instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
         instance.rat.transform.position = position;
     }
