@@ -37,7 +37,7 @@ public class Rat : MonoBehaviour
         }
 
 
-        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
         controller.Move(motion);
 
