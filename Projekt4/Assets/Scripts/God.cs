@@ -21,8 +21,8 @@ public class God : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(mousePos);
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, 1 << Layer.Tile))
             {
-                Debug.Log(hitInfo.collider.isTrigger);
-                Debug.Log(hitInfo.transform);
+                //Debug.Log(hitInfo.collider.isTrigger);
+                //Debug.Log(hitInfo.transform);
                 if (hitInfo.collider.isTrigger)
                 {
                     Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);

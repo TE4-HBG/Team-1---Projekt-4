@@ -19,7 +19,7 @@ public class PowerUpScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == Layer.Player)
+        if(other.HasLayer(Layer.Player))
         {
             
             other.gameObject.GetComponent<Rat>().powerUp = this.powerUp;

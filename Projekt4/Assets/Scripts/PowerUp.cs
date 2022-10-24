@@ -32,7 +32,7 @@ public class PowerUp
 
 
                 rat.controller.AddForce( new Vector3(5f * 5f, (jumpHeight * jumpHeight) / (Physics.gravity.y * -2f), 5f));
-                Debug.Log("Rat did a big jump");
+                //Debug.Log("Rat did a big jump");
             }
         }
     }

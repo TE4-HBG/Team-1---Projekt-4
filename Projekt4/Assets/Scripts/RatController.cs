@@ -37,7 +37,7 @@ public class RatController : MonoBehaviour
 
             for (int contactIndex = 0; contactIndex < length; contactIndex++)
             {
-                Debug.Log(contacts[contactIndex].normal);
+                //Debug.Log($"{{Collision #{keyValuePair.Key}; Contact #{contactIndex}; normal: {contacts[contactIndex].normal} }}");
                 if (Vector3.Angle(transform.up, contacts[contactIndex].normal) <= slopeLimit)
                 {
 

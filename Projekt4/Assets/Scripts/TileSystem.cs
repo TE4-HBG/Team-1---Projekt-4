@@ -63,13 +63,13 @@ public class TileSystem : MonoBehaviour
                 }
             }
         }
-        Debug.Log("UH OH");
+        //Debug.Log("UH OH");
         return null;
     }
     
     public void SetTile(Vector3Int index, GameObject prefab)
     {
-        Debug.Log(index);
+        //Debug.Log(index);
         GameObject.Destroy(instances[index.x, index.y, index.z]);
         instances[index.x, index.y, index.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, index) + transform.position - Vector3.Scale(max,pivot), Quaternion.identity, transform);
 

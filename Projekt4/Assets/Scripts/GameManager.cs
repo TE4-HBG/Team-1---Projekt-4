@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             if (timer == maxTime)
             {
                 ResetTimer();
-                GameOver(GameOverReason.TimeRanOut);
+                GameOver(GameOverReason.TimeRanOut(this));
             }
 
             
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         get => instance.score;
         set
         {
-            instance.score += value;
+            instance.score = value;
             instance.scoreUI.text = instance.score.ToString("F0", System.Globalization.CultureInfo.InvariantCulture);
         }
         
@@ -131,6 +131,10 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver(GameOverReason gameOverReason)
     {
+        Debug.Log("GAME OVER!");
+        Debug.Log($"Reason: {gameOverReason.info}");
+        Debug.Log($"Caller: {gameOverReason.caller}");
+
         throw new NotImplementedException();
     }
 }

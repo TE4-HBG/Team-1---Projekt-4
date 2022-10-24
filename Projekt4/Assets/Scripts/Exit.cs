@@ -10,7 +10,7 @@ public class Exit : MonoBehaviour
     
     private void OnTriggerEnter(Collider possiblePlayer)
     {
-        if(possiblePlayer.gameObject.layer == Layer.Player)
+        if(possiblePlayer.HasLayer(Layer.Player))
         {
             GameManager.NextLevel(offset);
         }

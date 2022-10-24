@@ -19,4 +19,9 @@ public static class FunnyExtensions
             vector.y / other.y, 
             vector.z / other.z);
     }
+
+    public static bool HasLayer(this Collider collider, int layer)
+    {
+        return collider.gameObject.layer == layer;
+    }
 }

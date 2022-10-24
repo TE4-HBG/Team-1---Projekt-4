@@ -16,7 +16,7 @@ public class Rat : MonoBehaviour
         set 
         {
             _powerUp = value;
-            if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
+            //if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
 
             // do shit here!
         }
@@ -58,7 +58,7 @@ public class Rat : MonoBehaviour
         
         if (motion != Vector3.zero)
         {
-            mesh.transform.forward = motion;
+            mesh.transform.forward = Vector3.LerpUnclamped(mesh.transform.forward, motion.normalized, Time.deltaTime * 10f);
         }
 
         if (Input.GetKeyDown(KeyCode.Home)) SoundEffectManager.PlaySoundEffect(SoundEffect.Secret);
