@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     }
     public static void CalculateScore()
     {
-        Score += instance.maxTime - instance.timer;
+        Score += ((instance.maxTime - instance.timer) * 100f)/ instance.maxTime;
     }
     public static float Score 
     {
