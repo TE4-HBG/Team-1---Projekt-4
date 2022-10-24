@@ -7,13 +7,27 @@ using System;
 public class Rat : MonoBehaviour
 {
     //private Action<Rat> powerUpFunction = PowerUp.Jump;
-    private PowerUpFunction powerUpFunction = PowerUp.Jump;
+    private PowerUp _powerUp;
+
+    public PowerUp powerUp
+    {
+        get { return _powerUp; }
+        set 
+        {
+            _powerUp = value;
+            if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
+
+            // do shit here!
+        }
+    }
 
     public RatController controller;
 
     [SerializeField]
     private GameObject mesh;
 
+
+    
 
     //private Vector3 playerVelocity;
     [SerializeField]
@@ -33,7 +47,7 @@ public class Rat : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            powerUpFunction(this);
+            UsePowerUp();
         }
 
 
@@ -48,5 +62,13 @@ public class Rat : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Home)) SoundEffectManager.PlaySoundEffect(SoundEffect.Secret);
+    }
+
+    void UsePowerUp()
+    {
+        if(_powerUp != null && _powerUp.powerUpFunction != null)
+        {
+            _powerUp.powerUpFunction(this);
+        }
     }
 }
