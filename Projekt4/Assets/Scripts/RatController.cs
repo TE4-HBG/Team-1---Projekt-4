@@ -8,9 +8,8 @@ public class RatController : MonoBehaviour
 
     [SerializeField]
     private Rigidbody rb;
-    [SerializeField]
-    private new Collider collider;
-    
+
+    public Dictionary<int, Collision> collisions = new Dictionary<int, Collision>();
     private Vector3 accumulatedMotion;
     private Vector3 accumulatedForce;
     public void Move(Vector3 motion)
@@ -28,22 +27,40 @@ public class RatController : MonoBehaviour
         rb.AddForce(accumulatedForce);
         accumulatedMotion = Vector3.zero;
         accumulatedForce = Vector3.zero;
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        int length = collision.contactCount;
-        ContactPoint[] contacts = new ContactPoint[length];
-        collision.GetContacts(contacts);
-        for (int i = 0; i < length; i++)
+
+
+        foreach (KeyValuePair<int, Collision> keyValuePair in collisions)
         {
-            //Debug.Log(contacts[i].normal);
-            if(Vector3.Angle(contacts[i].normal, Vector3.up) <= slopeLimit)
+            int length = keyValuePair.Value.contactCount;
+            ContactPoint[] contacts = new ContactPoint[length];
+            keyValuePair.Value.GetContacts(contacts);
+
+            for (int contactIndex = 0; contactIndex < length; contactIndex++)
             {
-                isGrounded = true;
-                return;
+                Debug.Log(contacts[contactIndex].normal);
+                if (Vector3.Angle(transform.up, contacts[contactIndex].normal) <= slopeLimit)
+                {
+
+                    isGrounded = true;
+                    return;
+                }
             }
         }
         isGrounded = false;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        collisions.Add(collision.collider.GetInstanceID(), collision);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        collisions[collision.collider.GetInstanceID()] = collision;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        collisions.Remove(collision.collider.GetInstanceID());
+    }
 }

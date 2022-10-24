@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using System;
+using System.ComponentModel;
 
 public class Rat : MonoBehaviour
 {
@@ -23,8 +24,7 @@ public class Rat : MonoBehaviour
 
     public RatController controller;
 
-    [SerializeField]
-    private GameObject mesh;
+    public GameObject mesh;
 
 
     
@@ -51,14 +51,14 @@ public class Rat : MonoBehaviour
         }
 
 
-        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(Input.GetAxisRaw("Horizontal") , 0, Input.GetAxisRaw("Vertical")).normalized;
 
         controller.Move(motion);
 
         
         if (motion != Vector3.zero)
         {
-            mesh.transform.forward = -motion;
+            mesh.transform.forward = motion;
         }
 
         if (Input.GetKeyDown(KeyCode.Home)) SoundEffectManager.PlaySoundEffect(SoundEffect.Secret);

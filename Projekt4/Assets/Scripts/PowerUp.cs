@@ -23,11 +23,15 @@ public class PowerUp
     {
         public static void Jump(Rat rat)
         {
-            float jumpHeight = 2.5f;
+            
+            float jumpHeight = 100f;
+
             if (rat.controller.isGrounded)
             {
                 // f(x)=((x^(2))/(2*9.81))
-                rat.controller.AddForce(-Physics.gravity * jumpHeight + -Physics.gravity);
+
+
+                rat.controller.AddForce( new Vector3(5f * 5f, (jumpHeight * jumpHeight) / (Physics.gravity.y * -2f), 5f));
                 Debug.Log("Rat did a big jump");
             }
         }

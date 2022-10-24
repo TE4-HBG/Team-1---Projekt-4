@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3166736682268998042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1497715168054540357}
@@ -351,7 +351,6 @@ MonoBehaviour:
   isGrounded: 0
   slopeLimit: 22.5
   rb: {fileID: 3098192334556451983}
-  collider: {fileID: 0}
 --- !u!136 &970047354907492487
 CapsuleCollider:
   m_ObjectHideFlags: 0
