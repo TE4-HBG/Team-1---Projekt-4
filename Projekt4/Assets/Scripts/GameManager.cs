@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-// may god have mercy on my soul
-using System.Linq;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using UnityEngine.SocialPlatforms.Impl;
-
 public class GameManager : MonoBehaviour
 {
     
