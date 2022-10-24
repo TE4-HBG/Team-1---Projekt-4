@@ -5,7 +5,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    
     public static GameManager instance;
     public void Awake() { instance = this; }
 
@@ -66,8 +65,15 @@ public class GameManager : MonoBehaviour
     {
         if (timerOn)
         {
-            timer += Time.deltaTime;
+            timer = Mathf.Min(timer + Time.deltaTime, maxTime);
             timerUI.text = (maxTime - timer).ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
+            if (timer == maxTime)
+            {
+                ResetTimer();
+                GameOver(GameOverReason.TimeRanOut);
+            }
+
+            
         }
     }
     public static void ResetTimer()
@@ -123,7 +129,7 @@ public class GameManager : MonoBehaviour
         instance.rat.transform.position = position;
     }
 
-    public static void GameOver()
+    public static void GameOver(GameOverReason gameOverReason)
     {
         throw new NotImplementedException();
     }
