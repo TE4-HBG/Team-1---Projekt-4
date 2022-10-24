@@ -2490,6 +2490,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4927709348918972640, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
+      propertyPath: m_Pitch
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927709348918972640, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927709348918972640, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1746b04534700b14ca454935a10ce743, type: 3}
     - target: {fileID: 4927709348918972641, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2538,5 +2550,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: JukeBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8935029590780731854, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
+      propertyPath: _values.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: f17312ebec71f8045b288a8b61b9efbb, type: 3}
+    - target: {fileID: 8935029590780731854, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
+      propertyPath: _values.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 06059cd937b764d4c9367300e17dcc72, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
