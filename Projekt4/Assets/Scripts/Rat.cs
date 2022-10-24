@@ -7,8 +7,7 @@ using System.ComponentModel;
 
 public class Rat : MonoBehaviour
 {
-    //private Action<Rat> powerUpFunction = PowerUp.Jump;
-    private PowerUp _powerUp;
+    private PowerUp _powerUp = PowerUp.None;
 
     public PowerUp powerUp
     {
@@ -66,9 +65,7 @@ public class Rat : MonoBehaviour
 
     void UsePowerUp()
     {
-        if(_powerUp != null && _powerUp.powerUpFunction != null)
-        {
-            _powerUp.powerUpFunction(this);
-        }
+        _powerUp.method(this);
+        powerUp = PowerUp.None;
     }
 }
