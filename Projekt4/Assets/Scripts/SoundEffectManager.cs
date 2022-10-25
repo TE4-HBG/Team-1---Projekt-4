@@ -11,7 +11,6 @@ public enum SoundEffect
     PlaceObstacle,
     Goal,
     UsePowerup,
-    MoveAround,
     GameOver,
     RatJump,
     Secret,

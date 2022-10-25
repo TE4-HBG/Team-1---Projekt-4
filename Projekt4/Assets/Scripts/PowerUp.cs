@@ -32,7 +32,7 @@ public struct PowerUp
             {
                 // f(x)=((x^(2))/(2*9.81))
 
-
+                SoundEffectManager.PlaySoundEffect(SoundEffect.RatJump);
                 rat.controller.AddForce( new Vector3(5f * 5f, (jumpHeight * jumpHeight) / (Physics.gravity.y * -2f), 5f));
                 //Debug.Log("Rat did a big jump");
             }

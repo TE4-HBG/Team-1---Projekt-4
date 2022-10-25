@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public float score = 0f;
     public TextMeshProUGUI scoreUI;
-
+    public GameObject gameOverUI;
     public List<Level> levels;
     #region PREFABS
     public GameObject levelPrefab;
@@ -131,10 +131,12 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver(GameOverReason gameOverReason)
     {
+        ResetTimer();
+
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
 
-        throw new NotImplementedException();
+        instance.gameOverUI.SetActive(true);
     }
 }
