@@ -18,6 +18,10 @@ public class Rat : MonoBehaviour
             //if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
 
             // do shit here!
+            if(!_powerUp.Equals(PowerUp.None))
+            {
+                SoundEffectManager.PlaySoundEffect(SoundEffect.CollectPowerup);
+            }
         }
     }
 
