@@ -2807,14 +2807,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4927709348918972640, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
-      propertyPath: MaxDistance
-      value: 1.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4927709348918972640, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
-      propertyPath: MinDistance
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4927709348918972641, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2862,14 +2854,6 @@ PrefabInstance:
     - target: {fileID: 4927709348918972655, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
       propertyPath: m_Name
       value: JukeBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 8935029590780731855, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
-      propertyPath: MaxDistance
-      value: 1.953677
-      objectReference: {fileID: 0}
-    - target: {fileID: 8935029590780731855, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
-      propertyPath: MinDistance
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}

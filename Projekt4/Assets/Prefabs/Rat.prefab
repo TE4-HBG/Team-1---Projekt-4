@@ -334,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6567310030553700854}
   mesh: {fileID: 3166736682268998042}
+  audioSource: {fileID: 7760913729357550633}
   basePlayerSpeed: 6
   sprintMultiplier: 1.5
 --- !u!114 &6567310030553700854
@@ -348,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aa81d48b2f31942a9ee1d24e01b430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
+  isGrounded: 1
   slopeLimit: 22.5
   rb: {fileID: 3098192334556451983}
 --- !u!54 &3098192334556451983
@@ -377,11 +378,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: e276e5083165b2b4fad0cfc77c0753e2, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
