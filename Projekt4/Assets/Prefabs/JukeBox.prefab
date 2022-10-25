@@ -55,7 +55,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1746b04534700b14ca454935a10ce743, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.125
   m_Pitch: 0.8
   Loop: 1
   Mute: 0
@@ -63,8 +63,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -159,8 +159,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0
+  MaxDistance: 1.953677
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffectPlayer: {fileID: 8935029590780731855}
-  _keys: 0800000000000000010000000200000003000000040000000600000007000000
+  _keys: 0700000000000000010000000200000003000000040000000500000006000000
   _values:
   - {fileID: 8300000, guid: 2137314f4114caa4981cea869c351795, type: 3}
   - {fileID: 0}

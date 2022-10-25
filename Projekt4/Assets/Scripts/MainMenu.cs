@@ -11,10 +11,6 @@ public class MainMenu : MonoBehaviour
         GameManager.StartGame();
         this.gameObject.SetActive(false);
     }
-    public void SettingsButton()
-    {
-        settings.SetActive(true);
-    }
     public void ExitButton()
     {
         Application.Quit();

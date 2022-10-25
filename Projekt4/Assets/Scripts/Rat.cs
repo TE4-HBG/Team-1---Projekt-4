@@ -18,6 +18,10 @@ public class Rat : MonoBehaviour
             //if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
 
             // do shit here!
+            if(!_powerUp.Equals(PowerUp.None))
+            {
+                SoundEffectManager.PlaySoundEffect(SoundEffect.CollectPowerup);
+            }
         }
     }
 
@@ -26,14 +30,14 @@ public class Rat : MonoBehaviour
     public GameObject mesh;
 
 
-    
+    public AudioSource audioSource;
 
     //private Vector3 playerVelocity;
     [SerializeField]
     private float basePlayerSpeed = 8f;
     [SerializeField]
     private float sprintMultiplier = 1.5f;
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -58,6 +62,19 @@ public class Rat : MonoBehaviour
         if (motion != Vector3.zero)
         {
             mesh.transform.forward = Vector3.LerpUnclamped(mesh.transform.forward, motion.normalized, Time.deltaTime * 10f);
+            
+        }
+        
+        if(motion != Vector3.zero && controller.isGrounded)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Pause();
         }
 
         if (Input.GetKeyDown(KeyCode.Home)) SoundEffectManager.PlaySoundEffect(SoundEffect.Secret);
