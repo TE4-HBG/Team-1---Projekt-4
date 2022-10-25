@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 5277375112375413628}
   - component: {fileID: 1007371450482776112}
   m_Layer: 3
-  m_Name: Pit 0000
+  m_Name: test2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de17fc4af7063dd4fb5c68e184adfd5d, type: 2}
+  - {fileID: 1508253774310505870, guid: cc5f90aa0541d4842a2c05a3fececc76, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

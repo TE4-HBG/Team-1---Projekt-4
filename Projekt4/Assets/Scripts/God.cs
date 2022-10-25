@@ -8,8 +8,7 @@ public class God : MonoBehaviour
 
     public TileSystem tileSystem;
     public Camera cam;
-    public GameObject ground;
-    public GameObject pit;
+    public MetaTile shit;
 
     // Update is called once per frame
     void Update()
@@ -28,7 +27,7 @@ public class God : MonoBehaviour
                     Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
                     if (possibleIndex.HasValue)
                     {
-                        tileSystem.SetTile(possibleIndex.Value, pit);
+                        tileSystem.PlaceMetaTile(shit, possibleIndex.Value);
                     }
                     
                 }

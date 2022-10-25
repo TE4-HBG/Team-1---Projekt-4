@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RestartGame();
+            Restart();
         }
     }
     public static void CalculateScore()
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    private static void RestartGame()
+    private static void Restart()
     {
         ResetTimer();
         Score = 0f;

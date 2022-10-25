@@ -2151,8 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileSystem: {fileID: 5813658333502902818}
   cam: {fileID: 6781945632730959722}
-  ground: {fileID: 572574980149821508, guid: 696e9269afc703349a2b4cba096e7186, type: 3}
-  pit: {fileID: 4789244058158494150, guid: 1fb3608822956854e9efc94f31b8bf63, type: 3}
+  shit: {fileID: 11400000, guid: 4539e366906bf954d89922b8767e7f10, type: 2}
 --- !u!1 &4638777405762454228
 GameObject:
   m_ObjectHideFlags: 0
