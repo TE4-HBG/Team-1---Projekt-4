@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -33,7 +34,31 @@ public class MultiHashSet<T> : ISet<T>
             // else increase the amount of the item
             amount[item]++;
         }
-        Debug.Log($"There are {amount[item]} {item}'s in the list");
+
+        return itemAdded;
+    }
+    /// <summary>
+    /// Adds one of a specific item
+    /// </summary>
+    /// <param name="item"></param>
+    /// <returns>true if item was added to set, false if amount was simply increased</returns>
+    public bool Add(T item, out ulong amount)
+    {
+        bool itemAdded = m_Set.Add(item);
+        // if the item was added properly
+        if (itemAdded)
+        {
+            // simply set the amount to one
+            this.amount.Add(item, 1);
+
+        }
+        else
+        {
+            // else increase the amount of the item
+            this.amount[item]++;
+        }
+        amount = this.amount[item];
+
         return itemAdded;
     }
     /// <summary>
@@ -53,7 +78,23 @@ public class MultiHashSet<T> : ISet<T>
 
         return fullyRemoved;
     }
-    
+    public bool Remove(T item, out ulong amount)
+    {
+        bool fullyRemoved = --this.amount[item] == 0;
+
+        if (fullyRemoved)
+        {
+            this.amount.Remove(item);
+            m_Set.Remove(item);
+            amount = 0;
+        }
+        else
+        {
+            amount = this.amount[item];
+        }
+        
+        return fullyRemoved;
+    }
     public void Clear()
     {
         m_Set.Clear();

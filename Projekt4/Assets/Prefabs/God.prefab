@@ -88,7 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 442c5439d50541a4fb3d7acc338cb646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeableObjects: []
+  placeablePrefab: {fileID: 4425641623441430175, guid: 493db1b942163d044832e1f434cbe47b, type: 3}
+  placeableGameObjects: []
+  shouldRemoveGameobject: 
   tileSystem: {fileID: 0}
   cam: {fileID: 7276702014282940046}
   shit: {fileID: 11400000, guid: 4539e366906bf954d89922b8767e7f10, type: 2}

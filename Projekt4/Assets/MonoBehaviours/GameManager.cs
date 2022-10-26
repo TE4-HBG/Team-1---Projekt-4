@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public PlaceableObject[] placeableObjects = new PlaceableObject[1];
     public float objectSum;
+    public GameObject PlaceableGrid;
     public static GameManager instance;
     public void Awake() { instance = this; }
 
@@ -144,7 +145,11 @@ public class GameManager : MonoBehaviour
         instance.god.tileSystem = instance.levels.Last().tileSystem;
         int amountOfRolls = ((int)(Score / 25f) + 4);
 
-        instance.god.placeableObjects.Clear();
+
+
+        instance.god.Clear();
+        instance.god.DestroyGameObjects();
+
         for (int i = 0; i < amountOfRolls; i++)
         {
             float budget = Random.Range(0f,1f) * instance.objectSum;
@@ -159,7 +164,7 @@ public class GameManager : MonoBehaviour
 
                 if(budget <= 0)
                 {
-                    instance.god.placeableObjects.Add(index);
+                    instance.god.AddPlaceable(index);
                     break;
                 }
 
@@ -168,7 +173,7 @@ public class GameManager : MonoBehaviour
             }
             
         }
-
+        
     }
     
     public static void GameOver(GameOverReason gameOverReason)
