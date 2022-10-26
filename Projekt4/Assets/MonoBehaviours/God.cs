@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class God : MonoBehaviour
 {
@@ -10,7 +8,8 @@ public class God : MonoBehaviour
     public Camera cam;
     public MetaTile shit;
     public byte rotation = 0;
-    // Update is called once per frame
+
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Mouse1)) 
