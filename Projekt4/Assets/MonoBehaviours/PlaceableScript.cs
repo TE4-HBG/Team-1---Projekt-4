@@ -9,7 +9,6 @@ public class PlaceableScript : MonoBehaviour
 
     public void OnSelect()
     {
-        GameManager.instance.god.selectedTileID = id;
-        GameManager.instance.god.selectedTile = metaTile;
+        GameManager.instance.god.ChangeCurrentPlaceable(id);
     }
 }

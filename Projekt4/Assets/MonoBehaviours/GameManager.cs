@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
         instance.god.transform.SetPositionAndRotation(instance.levels.Last().godPosition.position, instance.levels.Last().godPosition.rotation);
         instance.god.tileSystem = instance.levels.Last().tileSystem;
         int amountOfRolls = ((int)(Score / 25f) + 4);
-
+        instance.god.ResetCurrentPlaceable();
 
 
         instance.god.Clear();
@@ -195,5 +195,10 @@ public class GameManager : MonoBehaviour
         {
             objectSum += placeableObjects[i].weight;
         }
+    }
+
+    public static void SetLight(bool isOn)
+    {
+        instance.levels.Last().lightContainer.SetActive(isOn);
     }
 }

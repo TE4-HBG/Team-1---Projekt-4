@@ -42,7 +42,7 @@ Camera:
   m_GameObject: {fileID: 365178228742782620}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -89,9 +89,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeablePrefab: {fileID: 4425641623441430175, guid: 493db1b942163d044832e1f434cbe47b, type: 3}
+  selectedTileID: 0
+  selectedTile: {fileID: 0}
   placeableGameObjects: []
   shouldRemoveGameobject: 
   tileSystem: {fileID: 0}
   cam: {fileID: 7276702014282940046}
-  shit: {fileID: 11400000, guid: 4539e366906bf954d89922b8767e7f10, type: 2}
   rotation: 0

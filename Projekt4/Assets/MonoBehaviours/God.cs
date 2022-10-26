@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class God : MonoBehaviour
 {
     public GameObject placeablePrefab;
-    private MultiHashSet<int> placeables = new MultiHashSet<int>();
-    public int selectedTileID;
-    public MetaTile selectedTile = null;
+    private MultiHashSet<int> placeableÍDs = new MultiHashSet<int>();
+    private int currentPlaceable = -1;
     private void OnEnable()
     {
         placeableGameObjects = new GameObject[GameManager.instance.placeableObjects.Length];
@@ -16,7 +15,7 @@ public class God : MonoBehaviour
     }
     public void Clear()
     {
-        placeables.Clear();
+        placeableÍDs.Clear();
         for (int i = 0; i < shouldRemoveGameobject.Length; i++)
         {
             shouldRemoveGameobject[i] = true;
@@ -24,7 +23,7 @@ public class God : MonoBehaviour
     }
     public void AddPlaceable(int id)
     {
-        if (placeables.Add(id, out ulong amount))
+        if (placeableÍDs.Add(id, out ulong amount))
         {
             if (shouldRemoveGameobject[id])
             {
@@ -65,7 +64,7 @@ public class God : MonoBehaviour
 
     public bool RemovePlaceable(int id)
     {
-        bool bruh = placeables.Remove(id, out ulong amount);
+        bool bruh = placeableÍDs.Remove(id, out ulong amount);
         if (bruh)
         {
             shouldRemoveGameobject[id] = true;
@@ -108,12 +107,12 @@ public class God : MonoBehaviour
                 if (hitInfo.collider.isTrigger)
                 {
                     Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
-                    if (possibleIndex.HasValue && selectedTile != null)
+                    if (possibleIndex.HasValue && currentPlaceable != -1)
                     {
-                        tileSystem.PlaceMetaTile(selectedTile, possibleIndex.Value, rotation);
-                        if (RemovePlaceable(selectedTileID))
+                        tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
+                        if (RemovePlaceable(currentPlaceable))
                         {
-                            selectedTile = null;
+                            ResetCurrentPlaceable();
                             DestroyGameObjects();
                         }
                         
@@ -127,6 +126,19 @@ public class God : MonoBehaviour
             rotation = (byte)((rotation + 1) % 4);
         }
 
+    }
+    public void ResetCurrentPlaceable()
+    {
+        currentPlaceable = -1;
+    }
+    public void ChangeCurrentPlaceable(int id)
+    {
+        if(currentPlaceable != -1)
+        {
+            placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(false);
+        }
+        currentPlaceable = id;
+        placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(true);
     }
     private void OnValidate()
     {
