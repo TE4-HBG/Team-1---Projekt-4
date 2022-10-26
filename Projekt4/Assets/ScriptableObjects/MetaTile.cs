@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Meta Tile", menuName = "Tile System/Meta Tile", order = 1)]
+[CreateAssetMenu(fileName = "Meta Tile", menuName = "Meta Tile")]
 public class MetaTile : ScriptableObject
 {
     [SerializeField]

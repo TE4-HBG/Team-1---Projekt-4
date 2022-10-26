@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class God : MonoBehaviour
 {
-
+    public List<PlaceableObject> placeableObjects = new List<PlaceableObject>();
     public TileSystem tileSystem;
     public Camera cam;
     public MetaTile shit;
