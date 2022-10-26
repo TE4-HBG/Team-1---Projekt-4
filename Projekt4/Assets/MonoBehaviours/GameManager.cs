@@ -1,10 +1,12 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+//using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public PlaceableObject[] placeableObjects = new PlaceableObject[1];
+    public float objectSum;
     public static GameManager instance;
     public void Awake() { instance = this; }
 
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour
     public float timer = 0f;
     public float maxTime = 60f;
     public TextMeshProUGUI timerUI;
-
+    
     public float score = 0f;
     public TextMeshProUGUI scoreUI;
     public GameObject gameOverUI;
@@ -20,9 +22,10 @@ public class GameManager : MonoBehaviour
     #region PREFABS
     public GameObject levelPrefab;
     public GameObject ratPrefab;
+    public GameObject godPrefab;
     #endregion
     public Rat rat;
-    
+    public God god;
     public static void NextLevel(Vector3 offset)
     {
         #region Calculate score
@@ -33,16 +36,18 @@ public class GameManager : MonoBehaviour
         #region Create next level
         Level current = GameManager.instance.levels.Last();
 
+
         Vector3 nextLevelPos = current.transform.position + offset;
 
         Level nextLevel = Instantiate(GameManager.instance.levelPrefab, nextLevelPos, Quaternion.identity).GetComponent<Level>();
         nextLevel.number = current.number + 1;
 
 
-        GameManager.instance.rat.transform.position = nextLevel.transform.position + nextLevel.entranceOffset;
+        ResetRat(nextLevel.transform.position + nextLevel.entranceOffset);
 
         current.gameObject.SetActive(false);
         GameManager.instance.levels.Add(nextLevel);
+        UpdateGod();
         #endregion
 
         StartTimer();
@@ -53,7 +58,8 @@ public class GameManager : MonoBehaviour
         instance.levels.Add(level);
         instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
         instance.rat.transform.position = level.transform.position + level.entranceOffset;
-
+        CreateGod();
+        UpdateGod();
         StartTimer();
     }
 
@@ -115,7 +121,7 @@ public class GameManager : MonoBehaviour
         instance.levels.Clear();
         Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
         instance.levels.Add(level);
-
+        UpdateGod();
 
         ResetRat(level.transform.position + level.entranceOffset);
 
@@ -128,7 +134,43 @@ public class GameManager : MonoBehaviour
         instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
         instance.rat.transform.position = position;
     }
+    public static void CreateGod()
+    {
+        instance.god = Instantiate(instance.godPrefab).GetComponent<God>();
+    }
+    public static void UpdateGod()
+    {
+        instance.god.transform.SetPositionAndRotation(instance.levels.Last().godPosition.position, instance.levels.Last().godPosition.rotation);
+        instance.god.tileSystem = instance.levels.Last().tileSystem;
+        int amountOfRolls = ((int)(Score / 25f) + 4);
 
+        instance.god.placeableObjects.Clear();
+        for (int i = 0; i < amountOfRolls; i++)
+        {
+            float budget = Random.Range(0f,1f) * instance.objectSum;
+            // Step through all the possibilities, one by one, checking to see if each one is selected.
+            int index = instance.placeableObjects.Length - 1;
+            
+            while (index >= 0)
+            {
+
+                // Remove the last item from the sum of total untested weights and try again.
+                budget -= instance.placeableObjects[index].weight;
+
+                if(budget <= 0)
+                {
+                    instance.god.placeableObjects.Add(index);
+                    break;
+                }
+
+
+                index -= 1;
+            }
+            
+        }
+
+    }
+    
     public static void GameOver(GameOverReason gameOverReason)
     {
         ResetTimer();
@@ -138,5 +180,15 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Caller: {gameOverReason.caller}");
 
         instance.gameOverUI.SetActive(true);
+    }
+
+    private void Start()
+    {
+        objectSum = 0f;
+
+        for (int i = 0; i < placeableObjects.Length; i++)
+        {
+            objectSum += placeableObjects[i].weight;
+        }
     }
 }

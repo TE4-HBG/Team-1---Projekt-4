@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8466e3a8024c59a478066627a2504379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableObjects:
+  - {fileID: 11400000, guid: 1da93de1bb95380418ec547616f4953f, type: 2}
+  - {fileID: 11400000, guid: 47e61756dd0c1364e80e2cc4f00a1a13, type: 2}
+  objectSum: 175
   timerOn: 0
   timer: 0
   maxTime: 60
@@ -54,4 +58,6 @@ MonoBehaviour:
   levels: []
   levelPrefab: {fileID: 1527563024752526135, guid: fe637af7b49acdd42b862135fe05aa6e, type: 3}
   ratPrefab: {fileID: 8235711538276433291, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
+  godPrefab: {fileID: 365178228742782620, guid: a060d8ad8523461499997137b073cf85, type: 3}
   rat: {fileID: 0}
+  god: {fileID: 0}

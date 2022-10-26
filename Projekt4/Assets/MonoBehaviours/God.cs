@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class God : MonoBehaviour
 {
-    public List<PlaceableObject> placeableObjects = new List<PlaceableObject>();
+    public MultiHashSet<int> placeableObjects = new MultiHashSet<int>();
     public TileSystem tileSystem;
     public Camera cam;
     public MetaTile shit;

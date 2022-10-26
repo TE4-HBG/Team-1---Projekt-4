@@ -7,7 +7,8 @@ public class Level : MonoBehaviour
 {
     public int number = 0;
     public Vector3 entranceOffset;
-
+    public Transform godPosition;
+    public TileSystem tileSystem;
     [ExecuteInEditMode]
     public void OnDrawGizmos()
     {
