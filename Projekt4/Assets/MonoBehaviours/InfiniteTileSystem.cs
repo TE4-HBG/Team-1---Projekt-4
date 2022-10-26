@@ -5,15 +5,20 @@ public class InfiniteTileSystem : MonoBehaviour
 {
     public Vector3 cellSize = Vector3.one;
 
-    public void SetTile(Vector3Int position, GameObject prefab)
+    public void SetTile(Vector3Int position, GameObject prefab, Action<GameObject> extra = null)
     {
-        GameObject.Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position, Quaternion.identity, transform);
+        GameObject gameObject = Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position, Quaternion.identity, transform);
+        gameObject.layer = 0;
+        if(extra != null)
+        {
+            extra(gameObject);
+        }
     }
     public void ClearAll()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            Destroy(transform.GetChild(i));
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
     private Vector3Int MetaTile0d(Vector3Int xy)
@@ -33,7 +38,7 @@ public class InfiniteTileSystem : MonoBehaviour
         return new Vector3Int(-xy.z, 0, xy.x);
     }
 
-    public void PlaceMetaTile(MetaTile metaTile, Vector3Int position, byte rotation = 0)
+    public void PlaceMetaTile(MetaTile metaTile, Vector3Int position, byte rotation = 0, Action<GameObject> extra = null)
     {
         Vector3Int truePosition = position + metaTile.offset;
         Func<Vector3Int, Vector3Int>[] PlayeMetaTiles = new Func<Vector3Int, Vector3Int>[4] { MetaTile0d, MetaTile90d, MetaTile180d, MetaTile270d };
@@ -43,7 +48,7 @@ public class InfiniteTileSystem : MonoBehaviour
         {
             for (xy.x = 0; xy.x < metaTile.size.x; xy.x++)
             {
-                SetTile(PlayeMetaTiles[rotation](xy) + truePosition, metaTile.GetTile(xy));
+                SetTile(PlayeMetaTiles[rotation](xy) + truePosition, metaTile.GetTile(xy), extra);
             }
         }
     }

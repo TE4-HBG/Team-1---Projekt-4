@@ -9,6 +9,14 @@ public class PlaceableScript : MonoBehaviour
 
     public void OnSelect()
     {
-        GameManager.instance.god.ChangeCurrentPlaceable(id);
+        if(GameManager.instance.god.currentPlaceable == id)
+        {
+            GameManager.instance.god.ResetCurrentPlaceable();
+        }
+        else
+        {
+            GameManager.instance.god.ChangeCurrentPlaceable(id);
+        }
+        
     }
 }

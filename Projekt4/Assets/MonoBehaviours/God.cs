@@ -7,7 +7,12 @@ public class God : MonoBehaviour
 {
     public GameObject placeablePrefab;
     private MultiHashSet<int> placeableÍDs = new MultiHashSet<int>();
-    private int currentPlaceable = -1;
+    public int currentPlaceable
+    {
+        get;
+        private set;
+    } = -1;
+    
     public InfiniteTileSystem preview;
     private void OnEnable()
     {
@@ -96,6 +101,11 @@ public class God : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            rotation = (byte)((rotation + 1) % 4);
+        }
+
         Vector3 mousePos = Input.mousePosition;
         //Debug.Log(mousePos);
         Ray ray = cam.ScreenPointToRay(mousePos);
@@ -105,7 +115,8 @@ public class God : MonoBehaviour
             Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
             if (possibleIndex.HasValue)
             {
-                preview.transform.position = possibleIndex.Value;
+                preview.transform.position = Vector3.Scale(possibleIndex.Value, tileSystem.cellSize) + tileSystem.transform.position;
+                preview.transform.eulerAngles = new Vector3(0f, rotation * 90f, 0f);
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
@@ -113,6 +124,7 @@ public class God : MonoBehaviour
                     {
                         ResetCurrentPlaceable();
                         DestroyGameObjects();
+                        preview.ClearAll();
                     }
                 }
             }
@@ -120,24 +132,43 @@ public class God : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            rotation = (byte)((rotation + 1) % 4);
-        }
+        
 
     }
     public void ResetCurrentPlaceable()
     {
-        currentPlaceable = -1;
+        if(currentPlaceable != -1)
+        {
+            if (placeableGameObjects[currentPlaceable] != null)
+            {
+                placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(false);
+            }
+            preview.ClearAll();
+            currentPlaceable = -1;
+        }
     }
     public void ChangeCurrentPlaceable(int id)
     {
         if (currentPlaceable != -1)
         {
-            placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(false); ;
+            placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(false);
+            preview.ClearAll();
         }
         currentPlaceable = id;
         placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(true);
+        preview.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, Vector3Int.zero, 0, PreviewExtra);
+    }
+
+    private static void PreviewExtra(GameObject gameObject)
+    {
+        MeshRenderer[] bruh = gameObject.GetComponentsInChildren<MeshRenderer>();
+
+        for (int i = 0; i < bruh.Length; i++)
+        {
+            Color color = bruh[i].material.GetColor("_Color");
+            color.a *= 0.5f;
+            bruh[i].material.SetColor("_Color", color);
+        }
     }
     private void OnValidate()
     {
