@@ -9,6 +9,7 @@ public class Level : MonoBehaviour
     public Vector3 entranceOffset;
     public Transform godPosition;
     public TileSystem tileSystem;
+    public Light[] lights;
     [ExecuteInEditMode]
     public void OnDrawGizmos()
     {
