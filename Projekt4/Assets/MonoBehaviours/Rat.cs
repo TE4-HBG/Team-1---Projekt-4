@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using System;
 using System.ComponentModel;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Rat : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Rat : MonoBehaviour
     public RatController controller;
 
     public GameObject mesh;
-
+    public Light light;
 
     public AudioSource audioSource;
 
@@ -82,7 +83,7 @@ public class Rat : MonoBehaviour
 
     void UsePowerUp()
     {
-        _powerUp.method(this);
+        StartCoroutine(_powerUp.method(this));
         powerUp = PowerUp.None;
     }
 }
