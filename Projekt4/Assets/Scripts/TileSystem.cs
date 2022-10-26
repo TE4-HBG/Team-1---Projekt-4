@@ -96,7 +96,6 @@ public class TileSystem : MonoBehaviour
 
     public void PlaceMetaTile(MetaTile metaTile, Vector3Int position, byte rotation = 0)
     {
-        rotation %= 4;
         Vector3Int truePosition = position + metaTile.offset;
         Func<Vector3Int, Vector3Int>[] PlayeMetaTiles = new Func<Vector3Int, Vector3Int>[4] { MetaTile0d, MetaTile90d, MetaTile180d, MetaTile270d };
 

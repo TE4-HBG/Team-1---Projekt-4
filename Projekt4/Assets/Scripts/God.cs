@@ -9,7 +9,7 @@ public class God : MonoBehaviour
     public TileSystem tileSystem;
     public Camera cam;
     public MetaTile shit;
-
+    public byte rotation = 0;
     // Update is called once per frame
     void Update()
     {
@@ -27,12 +27,16 @@ public class God : MonoBehaviour
                     Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
                     if (possibleIndex.HasValue)
                     {
-                        tileSystem.PlaceMetaTile(shit, possibleIndex.Value);
+                        tileSystem.PlaceMetaTile(shit, possibleIndex.Value, rotation);
                     }
                     
                 }
             }
         }
         
+    }
+    private void OnValidate()
+    {
+        rotation %= 4;
     }
 }
