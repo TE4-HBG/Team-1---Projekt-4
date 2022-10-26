@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    private static void Restart()
+    public static void Restart()
     {
         ResetTimer();
         Score = 0f;
