@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 917011688596380414}
   - component: {fileID: 3637726573963070627}
   m_Layer: 3
-  m_Name: test1
+  m_Name: testTile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 4}
+  m_Size: {x: 3.8, y: 3.8, z: 3.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1104723584467462773
 GameObject:
@@ -73,8 +73,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104723584467462773}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 1.9, z: 0}
+  m_LocalScale: {x: 3.8, y: 3.8, z: 3.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 917011688596380414}
@@ -108,7 +108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8885593802600643718, guid: cc5f90aa0541d4842a2c05a3fececc76, type: 3}
+  - {fileID: 2100000, guid: cb86a32205c88e04293397abc41a8404, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
