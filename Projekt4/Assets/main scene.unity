@@ -3155,10 +3155,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: scoreUI
       value: 
       objectReference: {fileID: 1338920434}
@@ -3170,10 +3166,6 @@ PrefabInstance:
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 789051258}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: levelPrefab
-      value: 
-      objectReference: {fileID: 1527563024752526135, guid: fe637af7b49acdd42b862135fe05aa6e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
 --- !u!1001 &8935029590440211380
@@ -3231,9 +3223,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: JukeBox
       objectReference: {fileID: 0}
-    - target: {fileID: 8935029590780731854, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
-      propertyPath: _values.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 71aedf85268704546b1134e8ec41fc36, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db44656180a9224a9b7726ef80bb538, type: 3}
