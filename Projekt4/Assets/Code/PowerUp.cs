@@ -52,10 +52,11 @@ public struct PowerUp
         public static IEnumerator Light(Rat rat)
         {
             rat.light.enabled = true;
-
+            GameManager.SetLight(false);
             
             yield return new WaitForSeconds(3);
             rat.light.enabled = false;
+            GameManager.SetLight(true);
         }
     }
     public static string[] names

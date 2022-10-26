@@ -46,7 +46,7 @@ public class God : MonoBehaviour
     {
         PlaceableObject placeableObject = GameManager.instance.placeableObjects[id];
 
-        GameObject placeable = Instantiate(placeablePrefab, GameManager.instance.PlaceableGrid.transform);
+        GameObject placeable = Instantiate(placeablePrefab, GameManager.instance.placeableGrid.transform);
 
         placeable.GetComponent<Image>().sprite = placeableObject.sprite;
         {

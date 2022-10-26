@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public PlaceableObject[] placeableObjects = new PlaceableObject[1];
     public float objectSum;
-    public GameObject PlaceableGrid;
+    public GameObject placeableGrid;
     public static GameManager instance;
     public void Awake() { instance = this; }
 

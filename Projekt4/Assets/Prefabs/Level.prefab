@@ -933,7 +933,7 @@ MonoBehaviour:
   entranceOffset: {x: 8.2, y: -0.2, z: -33.04}
   godPosition: {fileID: 6409255513175141542}
   tileSystem: {fileID: 5813658333502902818}
-  lights: []
+  lightContainer: {fileID: 94604189175613016}
 --- !u!1 &1850504132409405689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5567,7 +5567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 218402155020437125, guid: e8ada088d84d0254daa31ca48982144c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7200012
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 218402155020437125, guid: e8ada088d84d0254daa31ca48982144c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5607,7 +5607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3858026859735917877, guid: e8ada088d84d0254daa31ca48982144c, type: 3}
       propertyPath: powerUpIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ada088d84d0254daa31ca48982144c, type: 3}
