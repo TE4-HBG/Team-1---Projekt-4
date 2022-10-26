@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float objectSum;
     public GameObject placeableGrid;
     public static GameManager instance;
+    public InfiniteTileSystem preview;
     public void Awake() { instance = this; }
 
     public bool timerOn = false;
@@ -141,6 +142,7 @@ public class GameManager : MonoBehaviour
     }
     public static void UpdateGod()
     {
+        instance.god.preview = instance.preview;
         instance.god.transform.SetPositionAndRotation(instance.levels.Last().godPosition.position, instance.levels.Last().godPosition.rotation);
         instance.god.tileSystem = instance.levels.Last().tileSystem;
         int amountOfRolls = ((int)(Score / 25f) + 4);

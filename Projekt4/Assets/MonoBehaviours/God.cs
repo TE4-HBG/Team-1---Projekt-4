@@ -8,6 +8,7 @@ public class God : MonoBehaviour
     public GameObject placeablePrefab;
     private MultiHashSet<int> placeableÍDs = new MultiHashSet<int>();
     private int currentPlaceable = -1;
+    public InfiniteTileSystem preview;
     private void OnEnable()
     {
         placeableGameObjects = new GameObject[GameManager.instance.placeableObjects.Length];
@@ -95,32 +96,30 @@ public class God : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        Vector3 mousePos = Input.mousePosition;
+        //Debug.Log(mousePos);
+        Ray ray = cam.ScreenPointToRay(mousePos);
+        if (currentPlaceable != -1 && Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, 1 << Layer.Tile))
         {
-            Vector3 mousePos = Input.mousePosition;
-            //Debug.Log(mousePos);
-            Ray ray = cam.ScreenPointToRay(mousePos);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, 1 << Layer.Tile))
-            {
-                //Debug.Log(hitInfo.collider.isTrigger);
-                //Debug.Log(hitInfo.transform);
-                if (hitInfo.collider.isTrigger)
-                {
-                    Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
-                    if (possibleIndex.HasValue && currentPlaceable != -1)
-                    {
-                        tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
-                        if (RemovePlaceable(currentPlaceable))
-                        {
-                            ResetCurrentPlaceable();
-                            DestroyGameObjects();
-                        }
-                        
-                    }
 
+            Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
+            if (possibleIndex.HasValue)
+            {
+                preview.transform.position = possibleIndex.Value;
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
+                    if (RemovePlaceable(currentPlaceable))
+                    {
+                        ResetCurrentPlaceable();
+                        DestroyGameObjects();
+                    }
                 }
             }
+
+
         }
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             rotation = (byte)((rotation + 1) % 4);
@@ -133,9 +132,9 @@ public class God : MonoBehaviour
     }
     public void ChangeCurrentPlaceable(int id)
     {
-        if(currentPlaceable != -1)
+        if (currentPlaceable != -1)
         {
-            placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(false);
+            placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(false); ;
         }
         currentPlaceable = id;
         placeableGameObjects[currentPlaceable].transform.GetChild(1).gameObject.SetActive(true);
