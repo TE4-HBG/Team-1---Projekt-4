@@ -3,7 +3,12 @@ guid: 542a4dddc8fc761428757c323720fe34
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sludge splatter
+    second: {fileID: 2100000, guid: 694abc0c63f560c479faf06ba38e9946, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
