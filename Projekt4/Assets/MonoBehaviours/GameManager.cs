@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public InfiniteTileSystem preview;
     public void Awake() { instance = this; }
 
-    public Timer timer = new Timer(paused: true);
+    public Timer gameTimer = new Timer(paused: true);
+    public CircularTimer PowerUpSpawnTimer = new CircularTimer(paused: true);
     public float preparationTime = 20f;
     public float roundTime = 60f;
     public TextMeshProUGUI timerUI;
@@ -47,10 +48,12 @@ public class GameManager : MonoBehaviour
         current.gameObject.SetActive(false);
         instance.levels.Add(nextLevel);
         UpdateGod();
-        RemoveRat();
+
+        SetRatActivity(false);
         #endregion
         JukeBox.Play(SoundEffect.Goal);
         StartPreparation();
+        
     }
     public static void StartGame()
     {
@@ -65,25 +68,34 @@ public class GameManager : MonoBehaviour
     
     public static void StartRound()
     {
-        instance.timer.Set(instance.roundTime, GameOverTimer);
+        instance.gameTimer.Set(instance.roundTime, GameOverTimer);
 
         Level level = instance.levels.Last();
 
+        if(level.number == 0)
+        {
+            CreateRat(level.entranceOffset + level.transform.position);
+        }
+        else
+        {
+            SetRatActivity(true);
+            UpdateRat(level.entranceOffset + level.transform.position)
+        }
         
-        CreateRat(level.entranceOffset + level.transform.position);
+        
 
         static void GameOverTimer() => GameOver(GameOverReason.TimeRanOut(instance));   
 }
     public static void StartPreparation()
     {
-        instance.timer.Set(instance.preparationTime, StartRound);
+        instance.gameTimer.Set(instance.preparationTime, StartRound);
         JukeBox.Play(Song.Preparations);
 
     }
     public void UpdateTimer()
     {
-        timerUI.text = (timer.end - timer.time).ToString("F1", CultureInfo.InvariantCulture);
-        timer.Update(Time.deltaTime);
+        timerUI.text = (gameTimer.end - gameTimer.time).ToString("F1", CultureInfo.InvariantCulture);
+        gameTimer.Update(Time.deltaTime);
     }
     private void Update()
     {
@@ -96,7 +108,7 @@ public class GameManager : MonoBehaviour
     }
     public static void CalculateScore()
     {
-        Score += ((instance.roundTime - instance.timer.time) * 100f)/ instance.roundTime;
+        Score += ((instance.roundTime - instance.gameTimer.time) * 100f)/ instance.roundTime;
     }
     public static float Score 
     {
@@ -135,9 +147,13 @@ public class GameManager : MonoBehaviour
         instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
         instance.rat.transform.position = position;
     }
+    public static void SetRatActivity(bool isActive)
+    {
+        instance.rat.gameObject.SetActive(isActive);
+    }
     public static void UpdateRat(Vector3 position)
     {
-
+        instance.rat.transform.position = position;
     }
     public static void RemoveRat()
     {
@@ -188,7 +204,7 @@ public class GameManager : MonoBehaviour
     
     public static void GameOver(GameOverReason gameOverReason)
     {
-        instance.timer.paused = true;
+        instance.gameTimer.paused = true;
         JukeBox.Play(SoundEffect.GameOver);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
@@ -210,5 +226,9 @@ public class GameManager : MonoBehaviour
     public static void SetLight(bool isOn)
     {
         instance.levels.Last().lightContainer.SetActive(isOn);
+    }
+    private static void SpawnPowerUp()
+    {
+
     }
 }

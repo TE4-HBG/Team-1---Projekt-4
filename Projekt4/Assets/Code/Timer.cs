@@ -82,3 +82,38 @@ public struct Timer
         this.paused = paused;
     }
 }
+
+public struct CircularTimer
+{
+    public Action action;
+    public float time;
+    public float end;
+    public bool paused;
+    public void Update(float timeSinceLastUpdate)
+    {
+        if (!paused)
+        {
+            time += timeSinceLastUpdate;
+            if (time >= end)
+            {
+                action();
+                time %= end;
+            }
+
+        }
+    }
+    public CircularTimer(bool paused)
+    {
+        this.action = default;
+        this.end = default;
+        this.time = default;
+        this.paused = paused;
+    }
+    public CircularTimer(Action action, float end, bool paused = false)
+    {
+        this.action = action;
+        this.end = end;
+        this.time = 0f;
+        this.paused = paused;
+    }
+}
