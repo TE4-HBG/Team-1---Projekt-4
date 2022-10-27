@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d07141aba9db06844bdc0eedb49ccaca, type: 3}
-  m_Name: Trashbin Placeable
+  m_Name: Waste Place
   m_EditorClassIdentifier: 
-  metaTile: {fileID: 11400000, guid: d5e4d53956827914c824f81b96f86453, type: 2}
-  sprite: {fileID: 21300000, guid: 77aeaa902c162a84d9239c0d5646c38b, type: 3}
-  weight: 75
+  metaTile: {fileID: 0}
+  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
+  weight: 1
