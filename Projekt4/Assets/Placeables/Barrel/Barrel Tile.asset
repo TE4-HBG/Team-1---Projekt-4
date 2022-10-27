@@ -15,5 +15,5 @@ MonoBehaviour:
   size: {x: 2, y: 1}
   offset: {x: 0, y: 0, z: 0}
   _tiles:
+  - {fileID: 572574980149821508, guid: c521000f6690134408a4105fe509eb35, type: 3}
   - {fileID: 572574980149821508, guid: b83fa0ecf966be64a82669487394aead, type: 3}
-  - {fileID: 0}
