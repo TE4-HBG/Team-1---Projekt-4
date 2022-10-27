@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 1, y: 1}
   offset: {x: 0, y: 0, z: 0}
-  _tiles: []
+  _tiles:
+  - {fileID: 572574980149821508, guid: c642e30b978e40345bbc522f206b1721, type: 3}

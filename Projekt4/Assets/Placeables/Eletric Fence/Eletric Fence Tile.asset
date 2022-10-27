@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaac8b8f2fa2f04aa6870892ee9328c, type: 3}
   m_Name: Eletric Fence Tile
   m_EditorClassIdentifier: 
-  size: {x: 1, y: 1}
+  size: {x: 3, y: 1}
   offset: {x: 0, y: 0, z: 0}
-  _tiles: []
+  _tiles:
+  - {fileID: 572574980149821508, guid: 16fd289af8b026c409486f1d02e82e4c, type: 3}
+  - {fileID: 572574980149821508, guid: cff954cc23a87484eafee98e6d3a530d, type: 3}
+  - {fileID: 572574980149821508, guid: cff954cc23a87484eafee98e6d3a530d, type: 3}

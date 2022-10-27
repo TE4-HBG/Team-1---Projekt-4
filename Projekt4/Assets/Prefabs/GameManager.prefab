@@ -49,6 +49,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1da93de1bb95380418ec547616f4953f, type: 2}
   - {fileID: 11400000, guid: f2a9c899ba05dea48850392fe6ba44b3, type: 2}
   - {fileID: 11400000, guid: c9d63e37352232d47a1e722672ecc843, type: 2}
+  - {fileID: 11400000, guid: f54e387e62d43b2448e5e46e163a2701, type: 2}
   objectSum: 175
   placeableGrid: {fileID: 0}
   preview: {fileID: 0}

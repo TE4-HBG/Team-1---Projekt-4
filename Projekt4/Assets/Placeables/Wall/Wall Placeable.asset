@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wall Placeable
   m_EditorClassIdentifier: 
   metaTile: {fileID: 11400000, guid: 4943e8644774a554aa15a2652b542c1d, type: 2}
-  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
+  sprite: {fileID: 21300000, guid: de369d9cbf4b4dd459935d286a7b7480, type: 3}
   weight: 100
