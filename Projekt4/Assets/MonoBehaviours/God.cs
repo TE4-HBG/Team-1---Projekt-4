@@ -7,6 +7,9 @@ public class God : MonoBehaviour
 {
     public GameObject placeablePrefab;
     private MultiHashSet<int> placeableÍDs = new MultiHashSet<int>();
+    public Vector3Int currentPosition;
+    public GameObject currentTile;
+    public Color[] previousTileColor;
     public int currentPlaceable
     {
         get;
@@ -101,6 +104,22 @@ public class God : MonoBehaviour
 
     void Update()
     {
+        if(currentTile != null)
+        {
+            MeshRenderer[] meshRenderers = currentTile.GetComponentsInChildren<MeshRenderer>();
+
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                Color color = meshRenderers[i].material.GetColor("_Color");
+                color.g = 0f;
+                color.b = 0f;
+
+                meshRenderers[i].material.SetColor("_Color", previousTileColor[i]);
+            }
+
+            currentTile = null;
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             rotation = (byte)((rotation + 1) % 4);
@@ -113,9 +132,26 @@ public class God : MonoBehaviour
             Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
             if (possibleIndex.HasValue)
             {
+                currentTile = hitInfo.transform.gameObject;
+
+                MeshRenderer[] meshRenderers = currentTile.GetComponentsInChildren<MeshRenderer>();
+                previousTileColor = new Color[meshRenderers.Length];
+                for (int i = 0; i < meshRenderers.Length; i++)
+                {
+                    Color color = meshRenderers[i].material.GetColor("_Color");
+                    previousTileColor[i] = color;
+
+                    color.g = 0f;
+                    color.b = 0f;
+
+                    meshRenderers[i].material.SetColor("_Color", color);
+                }
+
+
+
                 preview.transform.position = Vector3.Scale(possibleIndex.Value + new Vector3(0f, 1.5f, 0f), tileSystem.cellSize) + tileSystem.transform.position;
                 preview.transform.eulerAngles = new Vector3(0f, rotation * 90f, 0f);
-                if (Input.GetKeyDown(KeyCode.Mouse0) && possibleIndex.Value.x != 0 && possibleIndex.Value.x != 11)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && possibleIndex.Value.x > 0 && possibleIndex.Value.x < tileSystem.size.x)
                 {
 
                     tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
