@@ -8,7 +8,7 @@ public class InfiniteTileSystem : MonoBehaviour
     public void SetTile(Vector3Int position, GameObject prefab, Action<GameObject> extra = null)
     {
         GameObject gameObject = Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position, Quaternion.identity, transform);
-        gameObject.layer = 0;
+        
         if(extra != null)
         {
             extra(gameObject);

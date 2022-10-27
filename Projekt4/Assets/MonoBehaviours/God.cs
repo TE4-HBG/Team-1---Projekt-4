@@ -115,7 +115,7 @@ public class God : MonoBehaviour
             Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
             if (possibleIndex.HasValue)
             {
-                preview.transform.position = Vector3.Scale(possibleIndex.Value, tileSystem.cellSize) + tileSystem.transform.position;
+                preview.transform.position = Vector3.Scale(possibleIndex.Value, tileSystem.cellSize) + tileSystem.transform.position + new Vector3(0f,2.5f,0f);
                 preview.transform.eulerAngles = new Vector3(0f, rotation * 90f, 0f);
                 if (Input.GetKeyDown(KeyCode.Mouse0) && possibleIndex.Value.x != 0 && possibleIndex.Value.x != 11)
                 {
@@ -162,13 +162,30 @@ public class God : MonoBehaviour
 
     private static void PreviewExtra(GameObject gameObject)
     {
-        MeshRenderer[] bruh = gameObject.GetComponentsInChildren<MeshRenderer>();
+        Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
 
-        for (int i = 0; i < bruh.Length; i++)
+        MeshRenderer[] meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
+
+
+        for (int i = 0; i < meshRenderers.Length; i++)
         {
-            Color color = bruh[i].material.GetColor("_Color");
+            Material mat = meshRenderers[i].material;
+            meshRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            mat.SetInt("_DstBlend", 10);
+            mat.SetInt("_SrcBlend", 5);
+            mat.SetFloat("_Mode", 2);
+            mat.SetInt("_ZWrite", 0);
+            mat.DisableKeyword("_ALPHATEST_ON");
+            mat.EnableKeyword("_ALPHABLEND_ON");
+            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            mat.renderQueue = 3000;
+            Color color = mat.GetColor("_Color");
             color.a *= 0.5f;
-            bruh[i].material.SetColor("_Color", color);
+            meshRenderers[i].material.SetColor("_Color", color);
+        }
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = false;
         }
     }
     private void OnValidate()
