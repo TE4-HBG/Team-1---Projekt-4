@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 917011688596380414}
   - component: {fileID: 3637726573963070627}
   m_Layer: 3
-  m_Name: cring
+  m_Name: Mouse Trap Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
