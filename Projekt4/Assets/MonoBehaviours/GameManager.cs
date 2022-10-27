@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject placeableGrid;
     public static GameManager instance;
     public InfiniteTileSystem preview;
+
     public void Awake() { instance = this; }
 
     public Timer gameTimer = new Timer(paused: true);
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
             SetRatActivity(true);
             UpdateRat(level.entranceOffset + level.transform.position);
         }
-        
+        JukeBox.Play(Song.Level);
         
 
         static void GameOverTimer() => GameOver(GameOverReason.TimeRanOut(instance));   
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Restart();
-        }
+        }   
     }
     public static void CalculateScore()
     {
@@ -149,6 +150,21 @@ public class GameManager : MonoBehaviour
     }
     public static void SetRatActivity(bool isActive)
     {
+        if (!isActive)
+        {
+            for (int i = instance.rat.activePowerUps.Count - 1; i >= 0; i--)
+            {
+                if (instance.rat.activePowerUps[i].isActive)
+                {
+                    instance.rat.StopCoroutine(instance.rat.activePowerUps[i].coroutine);
+                    if (instance.rat.activePowerUps[i].powerUp.cancel != null)
+                    {
+                        instance.rat.activePowerUps[i].powerUp.cancel();
+                    }
+                    instance.rat.activePowerUps.RemoveAt(i);
+                }
+            }
+        }
         instance.rat.gameObject.SetActive(isActive);
     }
     public static void UpdateRat(Vector3 position)

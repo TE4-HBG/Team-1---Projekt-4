@@ -8,8 +8,8 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class Rat : MonoBehaviour
 {
+    public List<ActivePowerUp> activePowerUps = new List<ActivePowerUp>();
     private PowerUp _powerUp = PowerUp.None;
-
     public PowerUp powerUp
     {
         get { return _powerUp; }
@@ -81,11 +81,22 @@ public class Rat : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Home)) JukeBox.Play(SoundEffect.Secret);
-    }
 
+        UpdateActivePowerUps();
+    }
+    private void UpdateActivePowerUps()
+    {
+        for (int i = activePowerUps.Count - 1; i >= 0; i--)
+        {
+            if (!activePowerUps[i].isActive)
+            {
+                activePowerUps.RemoveAt(i);
+            }
+        }
+    }
     void UsePowerUp()
     {
-        StartCoroutine(_powerUp.method(this));
+        activePowerUps.Add(new ActivePowerUp(this));
         powerUp = PowerUp.None;
     }
 }

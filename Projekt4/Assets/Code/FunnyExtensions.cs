@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class FunnyExtensions
 {
@@ -24,4 +26,5 @@ public static class FunnyExtensions
     {
         return collider.gameObject.layer == layer;
     }
+    
 }

@@ -250,10 +250,10 @@ MonoBehaviour:
   songPlayer: {fileID: 4927709348918972640}
   soundEffectPlayer: {fileID: 8935029590780731855}
   songs:
+  - {fileID: 8300000, guid: f2d07ce15420a6b468ef883f5443fd83, type: 3}
+  - {fileID: 8300000, guid: 73d7108b25a58ea49a25c7263c23f9d1, type: 3}
   - {fileID: 8300000, guid: 1746b04534700b14ca454935a10ce743, type: 3}
-  - {fileID: 8300000, guid: 1746b04534700b14ca454935a10ce743, type: 3}
-  - {fileID: 8300000, guid: 1746b04534700b14ca454935a10ce743, type: 3}
-  - {fileID: 8300000, guid: 5a3a829767452204a9bf1f6846a31a0b, type: 3}
+  - {fileID: 8300000, guid: 6b594c701f7c355439726b00a738efab, type: 3}
   soundEffects:
   - {fileID: 8300000, guid: 71aedf85268704546b1134e8ec41fc36, type: 3}
   - {fileID: 8300000, guid: 0f8ee14eac0f52f47a30079473eb6e20, type: 3}
