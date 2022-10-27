@@ -62,7 +62,15 @@ public class GameManager : MonoBehaviour
         instance.rat.transform.position = level.transform.position + level.entranceOffset;
         CreateGod();
         UpdateGod();
+
+        StartPreparation();
         StartTimer();
+
+    }
+
+    public static void StartPreparation()
+    {
+
     }
 
     public static void StartTimer()
