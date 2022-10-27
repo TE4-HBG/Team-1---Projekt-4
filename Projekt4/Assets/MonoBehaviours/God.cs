@@ -117,8 +117,9 @@ public class God : MonoBehaviour
             {
                 preview.transform.position = Vector3.Scale(possibleIndex.Value, tileSystem.cellSize) + tileSystem.transform.position;
                 preview.transform.eulerAngles = new Vector3(0f, rotation * 90f, 0f);
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0) && possibleIndex.Value.x != 0 && possibleIndex.Value.x != 11)
                 {
+
                     tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
                     if (RemovePlaceable(currentPlaceable))
                     {
