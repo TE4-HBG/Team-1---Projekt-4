@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Pit Placeable
   m_EditorClassIdentifier: 
   metaTile: {fileID: 11400000, guid: 3ed4f3004582d964eafed2d49007d8e3, type: 2}
-  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
+  sprite: {fileID: 21300000, guid: c9384c0582bcce842892b79100c4aae1, type: 3}
   weight: 75
