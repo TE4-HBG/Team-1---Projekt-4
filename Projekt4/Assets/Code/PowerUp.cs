@@ -15,17 +15,17 @@ public struct PowerUp
         this.method = method;
     }
 
-    public static readonly PowerUp None = new PowerUp(null, "None", PowerUp.Methods.None);
-    public static readonly PowerUp Jump = new PowerUp(null, "Jump", PowerUp.Methods.Jump);
-    public static readonly PowerUp Light = new PowerUp(null, "Light", PowerUp.Methods.Light);
-    public static readonly PowerUp SpeedUp = new PowerUp(null, "SpeedUp", PowerUp.Methods.SpeedUp);
+    public static readonly PowerUp None = new PowerUp(null, "None", Methods.None);
+    public static readonly PowerUp Jump = new PowerUp(null, "Jump", Methods.Jump);
+    public static readonly PowerUp Light = new PowerUp(null, "Light", Methods.Light);
+    public static readonly PowerUp SpeedUp = new PowerUp(null, "SpeedUp", Methods.SpeedUp);
 
     public static readonly PowerUp[] powerUps = new PowerUp[]
     {
-        PowerUp.None,
-        PowerUp.Jump,
-        PowerUp.Light,
-        PowerUp.SpeedUp,
+        None,
+        Jump,
+        Light,
+        SpeedUp,
     };
 
     public static class Methods

@@ -78,6 +78,6 @@ public class JukeBox : MonoBehaviour
     }
     private void Start()
     {
-        JukeBox.Play(Song.Menu);
+        Play(Song.Menu);
     }
 }
