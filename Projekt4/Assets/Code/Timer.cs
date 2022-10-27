@@ -10,10 +10,14 @@ using UnityEngine;
 public struct Timer
 {
     private Action action;
-    private float time;
+    public float time
+    {
+        get;
+        private set;
+    }
     private float end;
     public bool HasRan => time >= end;
-    public void UpdateTimer(float timeSinceLastUpdate)
+    public void Update(float timeSinceLastUpdate)
     {
         time += timeSinceLastUpdate;
         if(HasRan)
@@ -25,23 +29,23 @@ public struct Timer
     {
         time = 0f;
     }
-    public void Reset(Action action)
+    public void Set(Action action)
     {
         time = 0f;
         this.action = action;
     }
-    public void Reset(float end)
+    public void Set(float end)
     {
         time = 0f;
         this.end = end;
     }
-    public void Reset(Action action, float end)
+    public void Set(Action action, float end)
     {
         time = 0f;
         this.action = action;
         this.end = end;
     }
-    public void Reset(float end, Action action)
+    public void Set(float end, Action action)
     {
         time = 0f;
         this.action = action;
