@@ -11,7 +11,7 @@ public struct Timer
 {
     private Action action;
     private float time;
-    private readonly float end;
+    private float end;
     public bool HasRan => time >= end;
     public void UpdateTimer(float timeSinceLastUpdate)
     {
@@ -25,7 +25,28 @@ public struct Timer
     {
         time = 0f;
     }
-
+    public void Reset(Action action)
+    {
+        time = 0f;
+        this.action = action;
+    }
+    public void Reset(float end)
+    {
+        time = 0f;
+        this.end = end;
+    }
+    public void Reset(Action action, float end)
+    {
+        time = 0f;
+        this.action = action;
+        this.end = end;
+    }
+    public void Reset(float end, Action action)
+    {
+        time = 0f;
+        this.action = action;
+        this.end = end;
+    }
     public Timer(Action action, float end)
     {
         this.action = action;
