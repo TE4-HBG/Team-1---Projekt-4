@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Globalization;
 //using Random = UnityEngine.Random;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +14,9 @@ public class GameManager : MonoBehaviour
     public InfiniteTileSystem preview;
     public void Awake() { instance = this; }
 
-    public bool timerOn = false;
-    public float timer = 0f;
-    public float maxTime = 60f;
+    public Timer timer = new Timer(paused: true);
+    public float preparationTime = 20f;
+    public float roundTime = 60f;
     public TextMeshProUGUI timerUI;
     
     public float score = 0f;
@@ -32,70 +34,56 @@ public class GameManager : MonoBehaviour
     {
         #region Calculate score
         CalculateScore();
-        ResetTimer();
         #endregion
 
         #region Create next level
-        Level current = GameManager.instance.levels.Last();
+        Level current = instance.levels.Last();
 
 
         Vector3 nextLevelPos = current.transform.position + offset;
 
-        Level nextLevel = Instantiate(GameManager.instance.levelPrefab, nextLevelPos, Quaternion.identity).GetComponent<Level>();
+        Level nextLevel = Instantiate(instance.levelPrefab, nextLevelPos, Quaternion.identity).GetComponent<Level>();
         nextLevel.number = current.number + 1;
-
-
-        ResetRat(nextLevel.transform.position + nextLevel.entranceOffset);
-
         current.gameObject.SetActive(false);
-        GameManager.instance.levels.Add(nextLevel);
+        instance.levels.Add(nextLevel);
         UpdateGod();
+        RemoveRat();
         #endregion
         JukeBox.Play(SoundEffect.Goal);
-        StartTimer();
+        StartPreparation();
     }
     public static void StartGame()
     {
         Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
         instance.levels.Add(level);
-        instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
-        instance.rat.transform.position = level.transform.position + level.entranceOffset;
         CreateGod();
         UpdateGod();
 
         StartPreparation();
-        StartTimer();
 
     }
+    
+    public static void StartRound()
+    {
+        instance.timer.Set(instance.roundTime, GameOverTimer);
 
+        Level level = instance.levels.Last();
+
+        
+        CreateRat(level.entranceOffset + level.transform.position);
+
+        static void GameOverTimer() => GameOver(GameOverReason.TimeRanOut(instance));   
+}
     public static void StartPreparation()
     {
+        instance.timer.Set(instance.preparationTime, StartRound);
+        JukeBox.Play(Song.Preparations);
 
-    }
-
-    public static void StartTimer()
-    {
-        instance.timerOn = true;
     }
     public void UpdateTimer()
     {
-        if (timerOn)
-        {
-            timer = Mathf.Min(timer + Time.deltaTime, maxTime);
-            timerUI.text = (maxTime - timer).ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
-            if (timer == maxTime)
-            {
-                ResetTimer();
-                GameOver(GameOverReason.TimeRanOut(this));
-            }
-
-            
-        }
-    }
-    public static void ResetTimer()
-    {
-        instance.timerOn = false;
-        instance.timer = 0f;
+        timerUI.text = (timer.end - timer.time).ToString("F1", CultureInfo.InvariantCulture);
+        timer.Update(Time.deltaTime);
     }
     private void Update()
     {
@@ -108,7 +96,7 @@ public class GameManager : MonoBehaviour
     }
     public static void CalculateScore()
     {
-        Score += ((instance.maxTime - instance.timer) * 100f)/ instance.maxTime;
+        Score += ((instance.roundTime - instance.timer.time) * 100f)/ instance.roundTime;
     }
     public static float Score 
     {
@@ -116,13 +104,12 @@ public class GameManager : MonoBehaviour
         set
         {
             instance.score = value;
-            instance.scoreUI.text = instance.score.ToString("F0", System.Globalization.CultureInfo.InvariantCulture);
+            instance.scoreUI.text = instance.score.ToString("F0", CultureInfo.InvariantCulture);
         }
         
     }
     public static void Restart()
     {
-        ResetTimer();
         Score = 0f;
         for (int i = 0; i < instance.levels.Count; i++)
         {
@@ -132,17 +119,30 @@ public class GameManager : MonoBehaviour
         Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
         instance.levels.Add(level);
         UpdateGod();
+        RemoveRat();
 
-        ResetRat(level.transform.position + level.entranceOffset);
-
-        StartTimer();
+        StartPreparation();
+        
     }
     public static void ResetRat(Vector3 position)
     {
-        GameObject rat = instance.rat.gameObject;
-        Destroy(rat);
+        RemoveRat();
+        CreateRat(position);
+    }
+
+    public static void CreateRat(Vector3 position)
+    {
         instance.rat = Instantiate(instance.ratPrefab).GetComponent<Rat>();
         instance.rat.transform.position = position;
+    }
+    public static void UpdateRat(Vector3 position)
+    {
+
+    }
+    public static void RemoveRat()
+    {
+        GameObject rat = instance.rat.gameObject;
+        Destroy(rat);
     }
     public static void CreateGod()
     {
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
     
     public static void GameOver(GameOverReason gameOverReason)
     {
-        ResetTimer();
+        instance.timer.paused = true;
         JukeBox.Play(SoundEffect.GameOver);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");

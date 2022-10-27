@@ -15,46 +15,70 @@ public struct Timer
         get;
         private set;
     }
-    private float end;
+    public float end
+    {
+        get;
+        private set;
+    }
     public bool HasRan => time >= end;
+    public bool paused;
     public void Update(float timeSinceLastUpdate)
     {
-        time += timeSinceLastUpdate;
-        if(HasRan)
+        if (!paused)
         {
-            action();
+            time += timeSinceLastUpdate;
+            if (HasRan)
+            {
+                paused = true;
+                // this was the action can ovveride the action
+                action();
+            }
         }
+        
     }
     public void Reset()
     {
         time = 0f;
+        paused = false;
     }
     public void Set(Action action)
     {
         time = 0f;
         this.action = action;
+        paused = false;
     }
     public void Set(float end)
     {
         time = 0f;
         this.end = end;
+        paused = false;
     }
     public void Set(Action action, float end)
     {
         time = 0f;
         this.action = action;
         this.end = end;
+        paused = false;
     }
     public void Set(float end, Action action)
     {
         time = 0f;
         this.action = action;
         this.end = end;
+        paused = false;
     }
-    public Timer(Action action, float end)
+    public Timer(bool paused)
+    {
+        this.action = null;
+        this.end = 0f;
+        this.time = 0f;
+        this.paused = paused;
+    }
+    public Timer(Action action, float end, bool paused = false)
     {
         this.action = action;
         this.end = end;
         this.time = 0f;
+        this.paused = paused;
     }
 }

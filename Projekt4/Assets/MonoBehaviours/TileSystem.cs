@@ -72,8 +72,8 @@ public class TileSystem : MonoBehaviour
     {
         //Debug.Log(index);
         GameObject toDestroy = instances[position.x, position.y, position.z];
-        GameObject.Destroy(toDestroy);
-        instances[position.x, position.y, position.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position - Vector3.Scale(max,pivot), Quaternion.Euler(0f, rotation, 0f), transform);
+        Destroy(toDestroy);
+        instances[position.x, position.y, position.z] = Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position - Vector3.Scale(max,pivot), Quaternion.Euler(0f, rotation, 0f), transform);
 
     }
 
