@@ -10,6 +10,7 @@ public enum Song
     Menu,
     Preparations,
     Level,
+    GameOver,
     /// <summary>
     /// The last item in the songs enum
     /// </summary>
@@ -20,7 +21,6 @@ public enum SoundEffect
     CollectPowerup,
     PlaceObstacle,
     Goal,
-    GameOver,
     RatJump,
     Secret,
     None,

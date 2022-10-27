@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver(GameOverReason gameOverReason)
     {
         instance.gameTimer.paused = true;
-        JukeBox.Play(SoundEffect.GameOver);
+        JukeBox.Play(Song.GameOver);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
