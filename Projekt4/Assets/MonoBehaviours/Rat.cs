@@ -38,16 +38,18 @@ public class Rat : MonoBehaviour
     private float basePlayerSpeed = 8f;
     [SerializeField]
     private float sprintMultiplier = 1.5f;
-
+    public float speedMultiplier = 1f;
     // Update is called once per frame
     void Update()
     {
-        float playerSpeed = basePlayerSpeed;
+        float playerSpeed = basePlayerSpeed * speedMultiplier;
         
         if (Input.GetKey(KeyCode.LeftShift))
         {
             playerSpeed *= sprintMultiplier;
         }
+
+        audioSource.pitch = playerSpeed / basePlayerSpeed;
 
         if (Input.GetKeyUp(KeyCode.Space))
         {

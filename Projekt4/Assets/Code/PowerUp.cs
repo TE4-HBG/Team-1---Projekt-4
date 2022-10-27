@@ -18,12 +18,14 @@ public struct PowerUp
     public static readonly PowerUp None = new PowerUp(null, "None", PowerUp.Methods.None);
     public static readonly PowerUp Jump = new PowerUp(null, "Jump", PowerUp.Methods.Jump);
     public static readonly PowerUp Light = new PowerUp(null, "Light", PowerUp.Methods.Light);
+    public static readonly PowerUp SpeedUp = new PowerUp(null, "SpeedUp", PowerUp.Methods.SpeedUp);
 
     public static readonly PowerUp[] powerUps = new PowerUp[]
     {
         PowerUp.None,
         PowerUp.Jump,
         PowerUp.Light,
+        PowerUp.SpeedUp,
     };
 
     public static class Methods
@@ -55,8 +57,18 @@ public struct PowerUp
             GameManager.SetLight(false);
             
             yield return new WaitForSeconds(3);
+
             rat.light.enabled = false;
             GameManager.SetLight(true);
+        }
+
+        public static IEnumerator SpeedUp(Rat rat)
+        {
+            rat.speedMultiplier += 1f;
+
+            yield return new WaitForSeconds(4.5f);
+
+            rat.speedMultiplier -= 1f;
         }
     }
     public static string[] names
