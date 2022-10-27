@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         GameManager.instance.levels.Add(nextLevel);
         UpdateGod();
         #endregion
-
+        JukeBox.Play(SoundEffect.Goal);
         StartTimer();
     }
     public static void StartGame()
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver(GameOverReason gameOverReason)
     {
         ResetTimer();
-
+        JukeBox.Play(SoundEffect.GameOver);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
