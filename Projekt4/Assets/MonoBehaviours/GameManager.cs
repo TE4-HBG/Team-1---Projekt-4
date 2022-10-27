@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         GameManager.instance.levels.Add(nextLevel);
         UpdateGod();
         #endregion
-
+        JukeBox.Play(SoundEffect.Goal);
         StartTimer();
     }
     public static void StartGame()
@@ -62,7 +62,15 @@ public class GameManager : MonoBehaviour
         instance.rat.transform.position = level.transform.position + level.entranceOffset;
         CreateGod();
         UpdateGod();
+
+        StartPreparation();
         StartTimer();
+
+    }
+
+    public static void StartPreparation()
+    {
+
     }
 
     public static void StartTimer()
@@ -181,7 +189,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver(GameOverReason gameOverReason)
     {
         ResetTimer();
-
+        JukeBox.Play(SoundEffect.GameOver);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");

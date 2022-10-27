@@ -21,7 +21,7 @@ public class Rat : MonoBehaviour
             // do shit here!
             if(!_powerUp.Equals(PowerUp.None))
             {
-                SoundEffectManager.PlaySoundEffect(SoundEffect.CollectPowerup);
+                JukeBox.Play(SoundEffect.CollectPowerup);
             }
         }
     }
@@ -80,7 +80,7 @@ public class Rat : MonoBehaviour
             audioSource.Pause();
         }
 
-        if (Input.GetKeyDown(KeyCode.Home)) SoundEffectManager.PlaySoundEffect(SoundEffect.Secret);
+        if (Input.GetKeyDown(KeyCode.Home)) JukeBox.Play(SoundEffect.Secret);
     }
 
     void UsePowerUp()

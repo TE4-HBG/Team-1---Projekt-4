@@ -68,12 +68,12 @@ public class TileSystem : MonoBehaviour
         return null;
     }
     
-    public void SetTile(Vector3Int position, GameObject prefab)
+    public void SetTile(Vector3Int position, GameObject prefab, float rotation = 0f)
     {
         //Debug.Log(index);
         GameObject toDestroy = instances[position.x, position.y, position.z];
         GameObject.Destroy(toDestroy);
-        instances[position.x, position.y, position.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position - Vector3.Scale(max,pivot), Quaternion.identity, transform);
+        instances[position.x, position.y, position.z] = GameObject.Instantiate(prefab, Vector3.Scale(cellSize, position) + transform.position - Vector3.Scale(max,pivot), Quaternion.Euler(0f, rotation, 0f), transform);
 
     }
 
@@ -104,7 +104,7 @@ public class TileSystem : MonoBehaviour
         {
             for (xy.x = 0; xy.x < metaTile.size.x; xy.x++)
             {
-                SetTile(PlayeMetaTiles[rotation](xy) + truePosition, metaTile.GetTile(xy));
+                SetTile(PlayeMetaTiles[rotation](xy) + truePosition, metaTile.GetTile(xy), rotation * 90f);
             }
         }
     }

@@ -106,16 +106,14 @@ public class God : MonoBehaviour
             rotation = (byte)((rotation + 1) % 4);
         }
 
-        Vector3 mousePos = Input.mousePosition;
-        //Debug.Log(mousePos);
-        Ray ray = cam.ScreenPointToRay(mousePos);
-        if (currentPlaceable != -1 && Physics.Raycast(ray, out RaycastHit hitInfo, 1000f, 1 << Layer.Tile))
+
+        if (currentPlaceable != -1 && Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo, 1000f, 1 << Layer.Tile))
         {
 
             Vector3Int? possibleIndex = tileSystem.IndexOf(hitInfo.transform.gameObject);
             if (possibleIndex.HasValue)
             {
-                preview.transform.position = Vector3.Scale(possibleIndex.Value, tileSystem.cellSize) + tileSystem.transform.position + new Vector3(0f,2.5f,0f);
+                preview.transform.position = Vector3.Scale(possibleIndex.Value + new Vector3(0f, 1.5f, 0f), tileSystem.cellSize) + tileSystem.transform.position;
                 preview.transform.eulerAngles = new Vector3(0f, rotation * 90f, 0f);
                 if (Input.GetKeyDown(KeyCode.Mouse0) && possibleIndex.Value.x != 0 && possibleIndex.Value.x != 11)
                 {
