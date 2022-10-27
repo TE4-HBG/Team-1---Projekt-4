@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         else
         {
             SetRatActivity(true);
-            UpdateRat(level.entranceOffset + level.transform.position)
+            UpdateRat(level.entranceOffset + level.transform.position);
         }
         
         
