@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Globalization;
+using UnityEngine.UI;
 //using Random = UnityEngine.Random;
 
 
@@ -13,11 +14,10 @@ public class GameManager : MonoBehaviour
     public GameObject placeableGrid;
     public static GameManager instance;
     public InfiniteTileSystem preview;
-
     public void Awake() { instance = this; }
 
     public Timer gameTimer = new Timer(paused: true);
-    public CircularTimer PowerUpSpawnTimer = new CircularTimer(paused: true);
+    public CircularTimer PowerUpSpawnTimer = new CircularTimer(SpawnPowerUp, 4f, paused: true);
     public float preparationTime = 20f;
     public float roundTime = 60f;
     public TextMeshProUGUI timerUI;
@@ -25,11 +25,14 @@ public class GameManager : MonoBehaviour
     public float score = 0f;
     public TextMeshProUGUI scoreUI;
     public GameObject gameOverUI;
+    public TextMeshProUGUI powerUpNameUI;
+    public Image powerUpSpriteUI;
     public List<Level> levels;
     #region PREFABS
     public GameObject levelPrefab;
     public GameObject ratPrefab;
     public GameObject godPrefab;
+    public GameObject powerUpPrefab;
     #endregion
     public Rat rat;
     public God god;
@@ -83,6 +86,9 @@ public class GameManager : MonoBehaviour
             SetRatActivity(true);
             UpdateRat(level.entranceOffset + level.transform.position);
         }
+
+        instance.PowerUpSpawnTimer.paused = false;
+
         JukeBox.Play(Song.Level);
 
 
@@ -90,6 +96,7 @@ public class GameManager : MonoBehaviour
     }
     public static void StartPreparation()
     {
+        instance.PowerUpSpawnTimer.paused = true;
         instance.gameTimer.Set(instance.preparationTime, StartRound);
         JukeBox.Play(Song.Preparations);
 
@@ -220,7 +227,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver(GameOverReason gameOverReason)
     {
         instance.gameTimer.paused = true;
-        JukeBox.Play(Song.GameOver);
+        instance.StartCoroutine(JukeBox.GameOverEffect());
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
@@ -244,6 +251,22 @@ public class GameManager : MonoBehaviour
     }
     private static void SpawnPowerUp()
     {
+        List<PowerUpHolder> powerUpHolders = new List<PowerUpHolder>();
+        foreach (var item in instance.levels.Last().tileSystem.instances)
+        {
+            if (item.TryGetComponent(out PowerUpHolder kevin))
+            {
+                powerUpHolders.Add(kevin);
+            }
+        }
+        PowerUpHolder powerUpHolder = powerUpHolders[Random.Range(0, powerUpHolders.Count)];
 
+        PowerUpScript powerUpScript = Instantiate(instance.powerUpPrefab).GetComponent<PowerUpScript>();
+
+        powerUpScript.powerUp = instance.powerUps[Random.Range(0, instance.powerUps.Length)];
+
+        powerUpScript.transform.SetParent(powerUpHolder.powerUpPosition);
+        powerUpScript.transform.localPosition = Vector3.zero;
+        powerUpScript.transform.localRotation = Quaternion.identity;
     }
 }
