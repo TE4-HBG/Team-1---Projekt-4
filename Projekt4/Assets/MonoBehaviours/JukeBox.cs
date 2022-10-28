@@ -75,19 +75,25 @@ public class JukeBox : MonoBehaviour
     {
         instance.soundEffectPlayer.PlayOneShot(instance.soundEffects[(int)soundEffect]);
     }
-
-    public static IEnumerator GameOverEffect(float time = 2f, ulong steps = 64)
+    public static void ChangePitchOverTime(float newPitch = 0f, float time = 2f, ulong steps = 64)
     {
+        instance.StartCoroutine(ChangePitchOverTimeEnumerator(newPitch, time, steps));
+    }
+    private static IEnumerator ChangePitchOverTimeEnumerator(float newPitch, float time, ulong steps)
+    {
+        float distancePerStep = (newPitch - instance.songPlayer.pitch) / steps;
         for (ulong i = 0; i < steps; i++)
         {
             yield return new WaitForSeconds(time / steps);
 
-            instance.songPlayer.pitch -= 1f / steps;
+            instance.songPlayer.pitch += distancePerStep;
+            
         }
-        instance.songPlayer.Stop();
-        instance.songPlayer.pitch = 1f;
     }
-
+    public static void SetPitch(float newPitch = 1f)
+    {
+        instance.songPlayer.pitch = newPitch;
+    }
 
     private void Start()
     {

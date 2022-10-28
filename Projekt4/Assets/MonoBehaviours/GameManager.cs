@@ -105,6 +105,9 @@ public class GameManager : MonoBehaviour
     {
         timerUI.text = (gameTimer.end - gameTimer.time).ToString("F1", CultureInfo.InvariantCulture);
         gameTimer.Update(Time.deltaTime);
+
+        PowerUpSpawnTimer.Update(Time.deltaTime);
+
     }
     private void Update()
     {
@@ -131,6 +134,7 @@ public class GameManager : MonoBehaviour
     }
     public static void Restart()
     {
+        JukeBox.SetPitch(1f);
         Score = 0f;
         for (int i = 0; i < instance.levels.Count; i++)
         {
@@ -227,7 +231,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver(GameOverReason gameOverReason)
     {
         instance.gameTimer.paused = true;
-        instance.StartCoroutine(JukeBox.GameOverEffect());
+        JukeBox.ChangePitchOverTime(newPitch: 0.25f, time: 3f,256);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
@@ -254,7 +258,7 @@ public class GameManager : MonoBehaviour
         List<PowerUpHolder> powerUpHolders = new List<PowerUpHolder>();
         foreach (var item in instance.levels.Last().tileSystem.instances)
         {
-            if (item.TryGetComponent(out PowerUpHolder kevin))
+            if (item.TryGetComponent(out PowerUpHolder kevin) && !kevin.hasPowerUp)
             {
                 powerUpHolders.Add(kevin);
             }
@@ -268,5 +272,7 @@ public class GameManager : MonoBehaviour
         powerUpScript.transform.SetParent(powerUpHolder.powerUpPosition);
         powerUpScript.transform.localPosition = Vector3.zero;
         powerUpScript.transform.localRotation = Quaternion.identity;
+
+        powerUpHolder.hasPowerUp = true;
     }
 }
