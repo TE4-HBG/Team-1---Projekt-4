@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   metaTile: {fileID: 11400000, guid: 63a6e7360f6d30b4f9cedf04f30fa248, type: 2}
   sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
-  weight: 1
+  weight: 55

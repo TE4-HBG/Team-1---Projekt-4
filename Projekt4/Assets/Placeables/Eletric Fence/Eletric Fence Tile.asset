@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eletric Fence Tile
   m_EditorClassIdentifier: 
   size: {x: 3, y: 1}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 1, y: 0, z: 0}
   _tiles:
   - {fileID: 572574980149821508, guid: 16fd289af8b026c409486f1d02e82e4c, type: 3}
   - {fileID: 572574980149821508, guid: cff954cc23a87484eafee98e6d3a530d, type: 3}
