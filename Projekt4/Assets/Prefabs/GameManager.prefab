@@ -63,6 +63,8 @@ MonoBehaviour:
   score: 0
   scoreUI: {fileID: 0}
   gameOverUI: {fileID: 0}
+  powerUpNameUI: {fileID: 0}
+  powerUpSpriteUI: {fileID: 0}
   levels: []
   levelPrefab: {fileID: 1527563024752526135, guid: fe637af7b49acdd42b862135fe05aa6e, type: 3}
   ratPrefab: {fileID: 8235711538276433291, guid: 625e7ccb92522f745a8e6c6a910fd9c0, type: 3}
