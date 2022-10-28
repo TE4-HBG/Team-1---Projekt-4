@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922ac76b127de144d9813486b948bd71, type: 3}
   m_Name: Coffee bean
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
+  sprite: {fileID: 21300000, guid: d05d9fce76fd5e6419b0c14056892af3, type: 3}
   methodIndex: 2

@@ -231,6 +231,7 @@ public class GameManager : MonoBehaviour
     public static void GameOver(GameOverReason gameOverReason)
     {
         instance.gameTimer.paused = true;
+        instance.PowerUpSpawnTimer.paused = true;
         JukeBox.ChangePitchOverTime(newPitch: 0.25f, time: 3f,256);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");

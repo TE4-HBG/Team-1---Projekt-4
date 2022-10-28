@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922ac76b127de144d9813486b948bd71, type: 3}
   m_Name: Blindless
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
+  sprite: {fileID: 21300000, guid: 3de9a92a7f5e8c24dba04e0621c342a5, type: 3}
   methodIndex: 1

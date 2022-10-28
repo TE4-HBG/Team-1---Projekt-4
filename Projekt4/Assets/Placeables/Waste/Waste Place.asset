@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Waste Place
   m_EditorClassIdentifier: 
   metaTile: {fileID: 11400000, guid: 0401ac7d895b3a3448949b218a572009, type: 2}
-  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
-  weight: 100
+  sprite: {fileID: 21300000, guid: 5ed3f6dc6053bde4c87cde9ec8c3b55f, type: 3}
+  weight: 75

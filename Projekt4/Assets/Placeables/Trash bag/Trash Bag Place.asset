@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Trash Bag Place
   m_EditorClassIdentifier: 
   metaTile: {fileID: 11400000, guid: 4997c4b3c566d534daca2e4dbc2c9ba6, type: 2}
-  sprite: {fileID: 21300000, guid: a63bd19b87ac46a4a86abfd02861cf87, type: 3}
+  sprite: {fileID: 21300000, guid: 7b8c4d90257e6e44dbb340d1bf2f369d, type: 3}
   weight: 100
