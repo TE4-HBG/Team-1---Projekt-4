@@ -5,4 +5,5 @@ using UnityEngine;
 public class PowerUpHolder : MonoBehaviour
 {
     public Transform powerUpPosition;
+    public bool hasPowerUp;
 }

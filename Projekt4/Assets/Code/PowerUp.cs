@@ -42,8 +42,8 @@ public class PowerUp : ScriptableObject
     public static readonly Action[] cancels = new Action[]
     {
         Methods.NoCancel,
-        Methods.LightCancel,
-        Methods.SpeedUpCancel,
+        Methods.LightTurnOff,
+        Methods.SpeedUpTurnOff,
     };
     public static class Methods
     {
@@ -73,11 +73,10 @@ public class PowerUp : ScriptableObject
 
             yield return new WaitForSeconds(3);
 
-            GameManager.instance.rat.light.enabled = false;
-            GameManager.SetLight(true);
+            LightTurnOff();
             isActive.Set(false);
         }
-        public static void LightCancel()
+        public static void LightTurnOff()
         {
             GameManager.instance.rat.light.enabled = false;
             GameManager.SetLight(true);
@@ -87,15 +86,17 @@ public class PowerUp : ScriptableObject
         {
             isActive.Set(true);
             GameManager.instance.rat.speedMultiplier += 1f;
+            JukeBox.ChangePitchOverTime(1.5f, 0.25f, 32);
 
             yield return new WaitForSeconds(4.5f);
 
-            GameManager.instance.rat.speedMultiplier -= 1f;
+            SpeedUpTurnOff();
             isActive.Set(false);
         }
-        public static void SpeedUpCancel()
+        public static void SpeedUpTurnOff()
         {
             GameManager.instance.rat.speedMultiplier -= 1f;
+            JukeBox.ChangePitchOverTime(1f, 1f, 32);
         }
     }
 }
