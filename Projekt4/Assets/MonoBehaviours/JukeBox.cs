@@ -10,7 +10,6 @@ public enum Song
     Menu,
     Preparations,
     Level,
-    GameOver,
     /// <summary>
     /// The last item in the songs enum
     /// </summary>
@@ -76,6 +75,20 @@ public class JukeBox : MonoBehaviour
     {
         instance.soundEffectPlayer.PlayOneShot(instance.soundEffects[(int)soundEffect]);
     }
+
+    public static IEnumerator GameOverEffect(float time = 2f, ulong steps = 64)
+    {
+        for (ulong i = 0; i < steps; i++)
+        {
+            yield return new WaitForSeconds(time / steps);
+
+            instance.songPlayer.pitch -= 1f / steps;
+        }
+        instance.songPlayer.Stop();
+        instance.songPlayer.pitch = 1f;
+    }
+
+
     private void Start()
     {
         Play(Song.Menu);
