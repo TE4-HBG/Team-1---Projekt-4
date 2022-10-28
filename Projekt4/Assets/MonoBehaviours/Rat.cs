@@ -9,7 +9,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class Rat : MonoBehaviour
 {
     public List<ActivePowerUp> activePowerUps = new List<ActivePowerUp>();
-    private PowerUp _powerUp = PowerUp.None;
+    private PowerUp _powerUp;
     public PowerUp powerUp
     {
         get { return _powerUp; }
@@ -19,7 +19,7 @@ public class Rat : MonoBehaviour
             //if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
 
             // do shit here!
-            if(!_powerUp.Equals(PowerUp.None))
+            if(_powerUp != null)
             {
                 JukeBox.Play(SoundEffect.CollectPowerup);
             }
@@ -97,6 +97,6 @@ public class Rat : MonoBehaviour
     void UsePowerUp()
     {
         activePowerUps.Add(new ActivePowerUp(this));
-        powerUp = PowerUp.None;
+        powerUp = default;
     }
 }

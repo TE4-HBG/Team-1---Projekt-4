@@ -7,7 +7,8 @@ using System.Globalization;
 
 public class GameManager : MonoBehaviour
 {
-    public PlaceableObject[] placeableObjects = new PlaceableObject[1];
+    public PlaceableObject[] placeableObjects;
+    public PowerUp[] powerUps;
     public float objectSum;
     public GameObject placeableGrid;
     public static GameManager instance;
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     public float preparationTime = 20f;
     public float roundTime = 60f;
     public TextMeshProUGUI timerUI;
-    
+
     public float score = 0f;
     public TextMeshProUGUI scoreUI;
     public GameObject gameOverUI;
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
         #endregion
         JukeBox.Play(SoundEffect.Goal);
         StartPreparation();
-        
+
     }
     public static void StartGame()
     {
@@ -66,14 +67,14 @@ public class GameManager : MonoBehaviour
         StartPreparation();
 
     }
-    
+
     public static void StartRound()
     {
         instance.gameTimer.Set(instance.roundTime, GameOverTimer);
 
         Level level = instance.levels.Last();
 
-        if(level.number == 0)
+        if (level.number == 0)
         {
             CreateRat(level.entranceOffset + level.transform.position);
         }
@@ -83,10 +84,10 @@ public class GameManager : MonoBehaviour
             UpdateRat(level.entranceOffset + level.transform.position);
         }
         JukeBox.Play(Song.Level);
-        
 
-        static void GameOverTimer() => GameOver(GameOverReason.TimeRanOut(instance));   
-}
+
+        static void GameOverTimer() => GameOver(GameOverReason.TimeRanOut(instance));
+    }
     public static void StartPreparation()
     {
         instance.gameTimer.Set(instance.preparationTime, StartRound);
@@ -105,13 +106,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Restart();
-        }   
+        }
     }
     public static void CalculateScore()
     {
-        Score += ((instance.roundTime - instance.gameTimer.time) * 100f)/ instance.roundTime;
+        Score += ((instance.roundTime - instance.gameTimer.time) * 100f) / instance.roundTime;
     }
-    public static float Score 
+    public static float Score
     {
         get => instance.score;
         set
@@ -119,7 +120,7 @@ public class GameManager : MonoBehaviour
             instance.score = value;
             instance.scoreUI.text = instance.score.ToString("F0", CultureInfo.InvariantCulture);
         }
-        
+
     }
     public static void Restart()
     {
@@ -135,7 +136,7 @@ public class GameManager : MonoBehaviour
         RemoveRat();
 
         StartPreparation();
-        
+
     }
     public static void ResetRat(Vector3 position)
     {
@@ -157,10 +158,8 @@ public class GameManager : MonoBehaviour
                 if (instance.rat.activePowerUps[i].isActive)
                 {
                     instance.rat.StopCoroutine(instance.rat.activePowerUps[i].coroutine);
-                    if (instance.rat.activePowerUps[i].powerUp.cancel != null)
-                    {
-                        instance.rat.activePowerUps[i].powerUp.cancel();
-                    }
+                    instance.rat.activePowerUps[i].powerUp.cancel();
+
                     instance.rat.activePowerUps.RemoveAt(i);
                 }
             }
@@ -194,17 +193,17 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < amountOfRolls; i++)
         {
-            float budget = Random.Range(0f,1f) * instance.objectSum;
+            float budget = Random.Range(0f, 1f) * instance.objectSum;
             // Step through all the possibilities, one by one, checking to see if each one is selected.
             int index = instance.placeableObjects.Length - 1;
-            
+
             while (index >= 0)
             {
 
                 // Remove the last item from the sum of total untested weights and try again.
                 budget -= instance.placeableObjects[index].weight;
 
-                if(budget <= 0)
+                if (budget <= 0)
                 {
                     instance.god.AddPlaceable(index);
                     break;
@@ -213,11 +212,11 @@ public class GameManager : MonoBehaviour
 
                 index -= 1;
             }
-            
+
         }
-        
+
     }
-    
+
     public static void GameOver(GameOverReason gameOverReason)
     {
         instance.gameTimer.paused = true;

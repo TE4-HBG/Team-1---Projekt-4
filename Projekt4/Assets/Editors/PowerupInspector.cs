@@ -3,17 +3,19 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
-[CustomEditor(typeof(PowerUpScript))]
+[CustomEditor(typeof(PowerUp))]
 public class PowerupInspector : Editor
 {
     
-    SerializedProperty powerUpIndex;
-
+    SerializedProperty method;
+    SerializedProperty sprite;
 
     private void OnEnable()
     {
-        powerUpIndex = serializedObject.FindProperty("powerUpIndex");
+        method = serializedObject.FindProperty("methodIndex");
+        sprite = serializedObject.FindProperty("sprite");
     }
 
 
@@ -23,11 +25,9 @@ public class PowerupInspector : Editor
 
         serializedObject.Update();
 
-
-
-        powerUpIndex.intValue = EditorGUILayout.Popup("Power up:", powerUpIndex.intValue, PowerUp.names);
-
-
+        EditorGUILayout.PropertyField(sprite);
+        method.intValue = EditorGUILayout.Popup("Power up method:", method.intValue, PowerUp.methodNames);
+        
         serializedObject.ApplyModifiedProperties();
     }
 

@@ -5,17 +5,7 @@ using UnityEngine;
 
 public class PowerUpScript : MonoBehaviour
 {
-
-    [SerializeField]
-    private int powerUpIndex;
-
-    public PowerUp powerUp
-    {
-        get
-        {
-            return PowerUp.powerUps[powerUpIndex];
-        }
-    }
+    public PowerUp powerUp;
 
     private void OnTriggerEnter(Collider other)
     {

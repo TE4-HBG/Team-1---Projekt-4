@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f465b6c4e20b08b4b904acf2c0760169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpIndex: 1
+  powerUp: {fileID: 11400000, guid: 027be1c4e26f94440b20bcc99cdca98a, type: 2}
 --- !u!65 &2265939685882737563
 BoxCollider:
   m_ObjectHideFlags: 0

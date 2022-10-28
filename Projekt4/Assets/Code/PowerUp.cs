@@ -1,39 +1,53 @@
 using UnityEngine;
 using System;
-using JetBrains.Annotations;
 using System.Collections;
 
-public struct PowerUp
+[CreateAssetMenu(fileName = "Power Up", menuName = "Power Up")]
+public class PowerUp : ScriptableObject
 {
     public Sprite sprite;
-    public string name;
-    public Func<Reference<bool>, IEnumerator> method;
-    public Action cancel;
-    public PowerUp(Sprite sprite, string name, Func<Reference<bool>, IEnumerator> method, Action cancel = null)
-    {
-        this.sprite = sprite;
-        this.name = name;
-        this.method = method;
-        this.cancel = cancel;
-    }
 
+    
+    public int methodIndex;
+    public Func<Reference<bool>, IEnumerator> method => methods[methodIndex];
+    public Action cancel => cancels[methodIndex];
+
+    /*
     public static readonly PowerUp None = new PowerUp(null, "None", Methods.None);
     public static readonly PowerUp Jump = new PowerUp(null, "Spring", Methods.Jump);
     public static readonly PowerUp Light = new PowerUp(null, "Methanol", Methods.Light, Methods.LightCancel);
     public static readonly PowerUp SpeedUp = new PowerUp(null, "Coffee Bean", Methods.SpeedUp, Methods.SpeedUpCancel);
     public static readonly PowerUp Dynamite = new PowerUp(null, "Dynamite", Methods.SpeedUp);
+    */
 
-    public static readonly PowerUp[] powerUps = new PowerUp[]
+    public static readonly Func<Reference<bool>, IEnumerator>[] methods = new Func<Reference<bool>, IEnumerator>[]
     {
-        Jump,
-        Light,
-        SpeedUp,
-        Dynamite,
-        None,
+        Methods.Jump,
+        Methods.Light,
+        Methods.SpeedUp,
+        //Methods.Dynamite,
     };
-
+    public static string[] methodNames
+    {
+        get
+        {
+            string[] names = new string[methods.Length];
+            for (int i = 0; i < names.Length; i++)
+            {
+                names[i] = methods[i].Method.Name;
+            }
+            return names;
+        }
+    }
+    public static readonly Action[] cancels = new Action[]
+    {
+        Methods.NoCancel,
+        Methods.LightCancel,
+        Methods.SpeedUpCancel,
+    };
     public static class Methods
     {
+        public static void NoCancel(){}
         public static IEnumerator Jump(Reference<bool> isActive)
         {
             isActive.Set(true);
@@ -48,13 +62,6 @@ public struct PowerUp
             //Debug.Log("Rat did a big jump");
 
             //}
-            yield return null;
-            isActive.Set(false);
-        }
-
-        public static IEnumerator None(Reference<bool> isActive)
-        {
-            isActive.Set(true);
             yield return null;
             isActive.Set(false);
         }
@@ -89,18 +96,6 @@ public struct PowerUp
         public static void SpeedUpCancel()
         {
             GameManager.instance.rat.speedMultiplier -= 1f;
-        }
-    }
-    public static string[] names
-    {
-        get
-        {
-            string[] names = new string[powerUps.Length];
-            for (int i = 0; i < names.Length; i++)
-            {
-                names[i] = powerUps[i].name;
-            }
-            return names;
         }
     }
 }
