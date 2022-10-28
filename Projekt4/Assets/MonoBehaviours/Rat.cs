@@ -21,7 +21,13 @@ public class Rat : MonoBehaviour
             // do shit here!
             if(_powerUp != null)
             {
+                GameManager.instance.powerUpNameUI.text = _powerUp.name;
+
                 JukeBox.Play(SoundEffect.CollectPowerup);
+            }
+            else
+            {
+                GameManager.instance.powerUpNameUI.text = string.Empty;
             }
         }
     }
