@@ -1,14 +1,10 @@
 
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 
 [CustomEditor(typeof(PowerUp))]
 public class PowerupInspector : Editor
 {
-    
     SerializedProperty method;
     SerializedProperty sprite;
 

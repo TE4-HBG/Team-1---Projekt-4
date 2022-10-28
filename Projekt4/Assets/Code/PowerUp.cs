@@ -85,18 +85,21 @@ public class PowerUp : ScriptableObject
         public static IEnumerator SpeedUp(Reference<bool> isActive)
         {
             isActive.Set(true);
-            GameManager.instance.rat.speedMultiplier += 1f;
+            GameManager.instance.rat.speedMultiplier = 1.5f;
             JukeBox.ChangePitchOverTime(1.5f, 0.25f, 32);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2.5f);
 
-            SpeedUpTurnOff();
+
+            JukeBox.ChangePitchOverTime(1.0f, 0.5f, 32);
+            GameManager.instance.rat.speedMultiplier = 1f;
+            
             isActive.Set(false);
         }
         public static void SpeedUpTurnOff()
         {
-            GameManager.instance.rat.speedMultiplier -= 1f;
-            JukeBox.ChangePitchOverTime(1f, 1f, 32);
+            GameManager.instance.rat.speedMultiplier = 1f;
+            JukeBox.SetPitch(1f);
         }
     }
 }
