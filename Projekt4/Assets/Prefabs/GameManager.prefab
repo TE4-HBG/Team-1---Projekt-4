@@ -53,8 +53,8 @@ MonoBehaviour:
   objectSum: 175
   placeableGrid: {fileID: 0}
   preview: {fileID: 0}
-  preparationTime: 10
-  roundTime: 40
+  preparationTime: 15
+  roundTime: 30
   timerUI: {fileID: 0}
   score: 0
   scoreUI: {fileID: 0}
