@@ -88,7 +88,7 @@ public class PowerUp : ScriptableObject
             GameManager.instance.rat.speedMultiplier += 1f;
             JukeBox.ChangePitchOverTime(1.5f, 0.25f, 32);
 
-            yield return new WaitForSeconds(4.5f);
+            yield return new WaitForSeconds(1.5f);
 
             SpeedUpTurnOff();
             isActive.Set(false);

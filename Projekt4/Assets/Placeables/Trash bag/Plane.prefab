@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 5829395867814048965}
   - component: {fileID: 8711090486368599017}
   - component: {fileID: 461067964823045600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,6 +201,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
+--- !u!1 &8233521469484671043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
+  m_PrefabInstance: {fileID: 9115903531119975698}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3951439282245292981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233521469484671043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.73, y: 7.36, z: 1.72}
+  m_Center: {x: -0.27, y: 1.51, z: -0.09}
 --- !u!4 &8721370812703046393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}

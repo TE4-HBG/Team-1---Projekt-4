@@ -37,7 +37,7 @@ public class Rat : MonoBehaviour
     }
 
     public RatController controller;
-
+    public GameObject currentTile;
     public GameObject mesh;
     public Light light;
 
@@ -108,5 +108,12 @@ public class Rat : MonoBehaviour
     {
         activePowerUps.Add(new ActivePowerUp(this));
         powerUp = default;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == Layer.TileWalkable)
+        {
+            currentTile = collision.transform.parent.gameObject;
+        }
     }
 }
