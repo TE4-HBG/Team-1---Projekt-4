@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaac8b8f2fa2f04aa6870892ee9328c, type: 3}
   m_Name: Barrel Tile
   m_EditorClassIdentifier: 
-  size: {x: 2, y: 1}
+  size: {x: 1, y: 2}
   offset: {x: 0, y: 0, z: 0}
   _tiles:
   - {fileID: 572574980149821508, guid: 0bb0a25af5577364d8d70e5adb494901, type: 3}
