@@ -3458,22 +3458,6 @@ PrefabInstance:
       propertyPath: placeableGrid
       value: 
       objectReference: {fileID: 1335049085}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: powerUps.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: powerUps.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: c84e08eebe6d83246b580caaef06009a, type: 2}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: powerUps.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 890bb0656ebc94f4aa7db713da0ae542, type: 2}
-    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
-      propertyPath: powerUps.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 027be1c4e26f94440b20bcc99cdca98a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
 --- !u!1001 &8935029590440211380

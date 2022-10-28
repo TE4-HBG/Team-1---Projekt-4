@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileSystem : MonoBehaviour
@@ -8,7 +9,8 @@ public class TileSystem : MonoBehaviour
     public Vector3 cellSize = Vector3.one;
     public GameObject defaultPrefab;
 
-    private GameObject[,,] instances;
+    [DoNotSerialize]
+    public GameObject[,,] instances;
 
     private Vector3 max => Vector3.Scale(cellSize, size);
     private void Start()
