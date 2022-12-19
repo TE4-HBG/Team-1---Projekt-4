@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public string playerName;
     public PlaceableObject[] placeableObjects;
     public PowerUp[] powerUps;
     public float objectSum;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float preparationTime = 20f;
     public float roundTime = 60f;
     public TextMeshProUGUI timerUI;
+
 
     public float score = 0f;
     public TextMeshProUGUI scoreUI;
@@ -236,10 +238,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
-
         instance.gameOverUI.SetActive(true);
     }
-
+	public static void OnPlayerNameChange(string newName) {
+        instance.playerName = newName;
+	}
     private void Start()
     {
         objectSum = 0f;

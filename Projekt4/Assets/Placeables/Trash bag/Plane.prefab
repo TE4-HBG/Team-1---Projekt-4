@@ -195,10 +195,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -892678894335326468, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f752850c9eff8074d9753ffa0e397ed5, type: 2}
+    - target: {fileID: -195374687947460372, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f752850c9eff8074d9753ffa0e397ed5, type: 2}
     - target: {fileID: 919132149155446097, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
       propertyPath: m_Name
       value: trash_bag_pole_prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1751364753743973369, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f752850c9eff8074d9753ffa0e397ed5, type: 2}
+    - target: {fileID: 5845607406660769477, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f752850c9eff8074d9753ffa0e397ed5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73d1b7abc3c672f468f176d3429e21d9, type: 3}
 --- !u!1 &8233521469484671043 stripped

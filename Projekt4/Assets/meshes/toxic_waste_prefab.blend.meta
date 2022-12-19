@@ -3,14 +3,9 @@ guid: 2070d0949fcd24643b718fc5e7be106c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: toxic waste
-    second: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
+  externalObjects: {}
   materials:
-    materialImportMode: 2
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1

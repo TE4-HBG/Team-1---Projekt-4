@@ -151,6 +151,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 917011688596380414}
     m_Modifications:
+    - target: {fileID: -8859791919392774957, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
     - target: {fileID: -8679921383154817045, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -195,10 +199,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6324250342277576476, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
+    - target: {fileID: -6106884868510309752, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
+    - target: {fileID: -5200846733762645290, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
+    - target: {fileID: -4664856187575559589, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
+    - target: {fileID: -1714975102227680241, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
     - target: {fileID: 919132149155446097, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
       propertyPath: m_Name
       value: toxic_waste_prefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1573823785506574182, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
+    - target: {fileID: 4364635834248397308, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6797b8566ee07d943ab6c038d772935d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2070d0949fcd24643b718fc5e7be106c, type: 3}
 --- !u!1 &8384323141714014801 stripped
