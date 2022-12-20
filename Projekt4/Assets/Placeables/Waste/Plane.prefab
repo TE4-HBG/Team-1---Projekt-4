@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ab071366d6373429edead144128012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffect: 6
 --- !u!4 &5346822332984757907 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 542a4dddc8fc761428757c323720fe34, type: 3}

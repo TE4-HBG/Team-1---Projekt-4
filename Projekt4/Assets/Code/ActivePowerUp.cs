@@ -9,7 +9,7 @@ public class ActivePowerUp
     public ActivePowerUp(Rat rat)
     {
         this.isActive = true;
-        this.powerUp = rat.powerUp;
+        this.powerUp = rat.PowerUp;
         this.coroutine = rat.StartCoroutine(this.powerUp.method(this.isActive));
     }
 }

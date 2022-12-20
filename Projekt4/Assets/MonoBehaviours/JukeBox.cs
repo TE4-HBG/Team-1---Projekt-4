@@ -22,6 +22,7 @@ public enum SoundEffect
     Goal,
     RatJump,
     Secret,
+    Death_Fence,
     None,
 }
 
@@ -73,7 +74,10 @@ public class JukeBox : MonoBehaviour
     }
     public static void Play(SoundEffect soundEffect)
     {
-        instance.soundEffectPlayer.PlayOneShot(instance.soundEffects[(int)soundEffect]);
+        if(soundEffect != SoundEffect.None)
+        {
+            instance.soundEffectPlayer.PlayOneShot(instance.soundEffects[(int)soundEffect]);
+        }
     }
     public static void ChangePitchOverTime(float newPitch = 0f, float time = 2f, ulong steps = 64)
     {
@@ -89,6 +93,7 @@ public class JukeBox : MonoBehaviour
             instance.songPlayer.pitch += distancePerStep;
             
         }
+        instance.songPlayer.pitch = newPitch;
     }
     public static void SetPitch(float newPitch = 1f)
     {

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eaac8b8f2fa2f04aa6870892ee9328c, type: 3}
-  m_Name: Barrel Tile
+  m_Name: Barrel Meta Tile
   m_EditorClassIdentifier: 
   size: {x: 1, y: 2}
   offset: {x: 0, y: 0, z: 0}
   _tiles:
-  - {fileID: 572574980149821508, guid: 0bb0a25af5577364d8d70e5adb494901, type: 3}
+  - {fileID: 572574980149821508, guid: e8937f2155aabd44db9dd7c980c8fb35, type: 3}
   - {fileID: 572574980149821508, guid: b83fa0ecf966be64a82669487394aead, type: 3}

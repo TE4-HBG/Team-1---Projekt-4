@@ -428,11 +428,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6567310030553700854}
+  currentTile: {fileID: 0}
   mesh: {fileID: 3166736682268998042}
   light: {fileID: 5409332527570723814}
   audioSource: {fileID: 7760913729357550633}
-  basePlayerSpeed: 6
-  sprintMultiplier: 1.5
+  basePlayerSpeed: 9
+  sprintMultiplier: 0
+  speedMultiplier: 1
 --- !u!114 &6567310030553700854
 MonoBehaviour:
   m_ObjectHideFlags: 0

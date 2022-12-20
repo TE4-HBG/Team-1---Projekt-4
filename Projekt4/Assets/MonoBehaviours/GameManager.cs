@@ -3,11 +3,67 @@ using UnityEngine;
 using TMPro;
 using System.Globalization;
 using UnityEngine.UI;
+using System.IO;
+using Newtonsoft.Json;
+using System.Text;
 //using Random = UnityEngine.Random;
 
+public struct CoolGuy
+{
+    public string name;
+    public float score;
+
+    public CoolGuy(string name, float score)
+    {
+        this.name = name;
+        this.score = score;
+    }
+}
 
 public class GameManager : MonoBehaviour
 {
+    public TextMeshProUGUI highscore;
+    static readonly Comparer<CoolGuy> Comparer = Comparer<CoolGuy>.Create((x, y) => y.score.CompareTo(x.score));
+    const string path = "./swag.json";
+    public static void AddScore(string name, float score)
+    {
+        List<CoolGuy> scores =
+            File.Exists(path) ?
+            GetScores() :
+            new List<CoolGuy>();
+        scores.Add(new CoolGuy(name, score));
+        scores.Sort(Comparer);
+        SetScores(scores);
+    }
+
+    private static List<CoolGuy> GetScores()
+    {
+        return JsonConvert.DeserializeObject<List<CoolGuy>>(File.ReadAllText(path));
+    }
+    public static string GetScoresString()
+    {
+        const int maxCount = 10;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        var scores = GetScores();
+        scores.Sort(Comparer);
+        var length = scores.Count > maxCount ? maxCount : scores.Count;
+        for(int i = 0; i < length; i++) 
+        {
+            stringBuilder.Append(i + 1 );
+            stringBuilder.Append(". ");
+            stringBuilder.Append(scores[i].name);
+            stringBuilder.Append(": ");
+            stringBuilder.Append(scores[i].score.ToString("F0", CultureInfo.InvariantCulture));
+            stringBuilder.Append('\n');
+        }
+
+        return stringBuilder.ToString();
+    }
+    private static void SetScores(List<CoolGuy> scores)
+    {
+        File.WriteAllText(path, JsonConvert.SerializeObject(scores, Formatting.Indented));
+    }
     public string playerName;
     public PlaceableObject[] placeableObjects;
     public PowerUp[] powerUps;
@@ -114,11 +170,12 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         UpdateTimer();
-
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             Restart();
         }
+        */
     }
     public static void CalculateScore()
     {
@@ -134,22 +191,28 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
     public static void Restart()
     {
-        JukeBox.SetPitch(1f);
-        Score = 0f;
-        for (int i = 0; i < instance.levels.Count; i++)
+        if (!string.IsNullOrWhiteSpace(instance.playerName))
         {
-            Destroy(instance.levels[i].gameObject);
+            instance.gameOverUI.SetActive(false);
+            AddScore(instance.playerName, instance.score);
+
+            JukeBox.SetPitch(1f);
+            Score = 0f;
+            for (int i = 0; i < instance.levels.Count; i++)
+            {
+                Destroy(instance.levels[i].gameObject);
+            }
+            instance.levels.Clear();
+            Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
+            instance.levels.Add(level);
+            UpdateGod();
+            RemoveRat();
+
+            StartPreparation();
         }
-        instance.levels.Clear();
-        Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
-        instance.levels.Add(level);
-        UpdateGod();
-        RemoveRat();
-
-        StartPreparation();
-
     }
     public static void ResetRat(Vector3 position)
     {
@@ -166,16 +229,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isActive)
         {
-            for (int i = instance.rat.activePowerUps.Count - 1; i >= 0; i--)
-            {
-                if (instance.rat.activePowerUps[i].isActive)
-                {
-                    instance.rat.StopCoroutine(instance.rat.activePowerUps[i].coroutine);
-                    instance.rat.activePowerUps[i].powerUp.cancel();
-
-                    instance.rat.activePowerUps.RemoveAt(i);
-                }
-            }
+            instance.rat.DisablePowerUps();
         }
         instance.rat.gameObject.SetActive(isActive);
     }
@@ -232,17 +286,21 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver(GameOverReason gameOverReason)
     {
+        instance.rat.DisablePowerUps();
+        instance.rat.PowerUp = null;
         instance.gameTimer.paused = true;
         instance.PowerUpSpawnTimer.paused = true;
-        JukeBox.ChangePitchOverTime(newPitch: 0.25f, time: 3f,256);
+        JukeBox.ChangePitchOverTime(newPitch: -0.25f, time: 3f, 256);
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");
+        instance.highscore.text = GetScoresString();
         instance.gameOverUI.SetActive(true);
     }
-	public static void OnPlayerNameChange(string newName) {
+    public static void OnPlayerNameChange(string newName)
+    {
         instance.playerName = newName;
-	}
+    }
     private void Start()
     {
         objectSum = 0f;

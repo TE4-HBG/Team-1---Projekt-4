@@ -19,7 +19,7 @@ public class PowerUpScript : MonoBehaviour
         if(other.HasLayer(Layer.Player))
         {
             
-            other.gameObject.GetComponent<Rat>().powerUp = this.powerUp;
+            other.gameObject.GetComponent<Rat>().PowerUp = this.powerUp;
 
 
             Destroy(this.gameObject);

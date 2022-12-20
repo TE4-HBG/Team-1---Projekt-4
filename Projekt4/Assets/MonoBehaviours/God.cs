@@ -153,7 +153,7 @@ public class God : MonoBehaviour
                 preview.transform.eulerAngles = new Vector3(0f, rotation * 90f, 0f);
                 if (Input.GetKeyDown(KeyCode.Mouse0) && possibleIndex.Value.x > 1 && possibleIndex.Value.x < tileSystem.size.x - 2 && (GameManager.instance.rat == null || hitInfo.transform.gameObject != GameManager.instance.rat.currentTile))
                 {
-
+                    JukeBox.Play(SoundEffect.PlaceObstacle);
                     tileSystem.PlaceMetaTile(GameManager.instance.placeableObjects[currentPlaceable].metaTile, possibleIndex.Value, rotation);
                     if (RemovePlaceable(currentPlaceable))
                     {

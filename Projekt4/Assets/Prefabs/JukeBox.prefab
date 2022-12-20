@@ -253,10 +253,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f2d07ce15420a6b468ef883f5443fd83, type: 3}
   - {fileID: 8300000, guid: 73d7108b25a58ea49a25c7263c23f9d1, type: 3}
   - {fileID: 8300000, guid: 1746b04534700b14ca454935a10ce743, type: 3}
-  - {fileID: 8300000, guid: 6b594c701f7c355439726b00a738efab, type: 3}
   soundEffects:
   - {fileID: 8300000, guid: 71aedf85268704546b1134e8ec41fc36, type: 3}
-  - {fileID: 8300000, guid: 0f8ee14eac0f52f47a30079473eb6e20, type: 3}
+  - {fileID: 8300000, guid: 6dc9791b522126649aa08afd1dfaaa0c, type: 3}
   - {fileID: 8300000, guid: bbc4bc776b1fec6428e107f0c8874482, type: 3}
   - {fileID: 8300000, guid: 17cf95d1869e1474895d96c57c74c0a3, type: 3}
   - {fileID: 8300000, guid: 2137314f4114caa4981cea869c351795, type: 3}
+  - {fileID: 8300000, guid: 08f50916b3b38d145b3341045a834ea0, type: 3}

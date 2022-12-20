@@ -5,12 +5,27 @@ using UnityEngine.InputSystem.XR;
 using System;
 using System.ComponentModel;
 using UnityEngine.Experimental.GlobalIllumination;
+using Unity.VisualScripting;
 
 public class Rat : MonoBehaviour
 {
     public List<ActivePowerUp> activePowerUps = new List<ActivePowerUp>();
     private PowerUp _powerUp;
-    public PowerUp powerUp
+
+    public void DisablePowerUps()
+    {
+        for (int i = activePowerUps.Count - 1; i >= 0; i--)
+        {
+            if (activePowerUps[i].isActive)
+            {
+                StopCoroutine(activePowerUps[i].coroutine);
+                activePowerUps[i].powerUp.cancel();
+
+                activePowerUps.RemoveAt(i);
+            }
+        }
+    }
+    public PowerUp PowerUp
     {
         get { return _powerUp; }
         set 
@@ -46,18 +61,12 @@ public class Rat : MonoBehaviour
     //private Vector3 playerVelocity;
     [SerializeField]
     private float basePlayerSpeed = 8f;
-    [SerializeField]
-    private float sprintMultiplier = 1.5f;
+    [NonSerialized]
     public float speedMultiplier = 1f;
     // Update is called once per frame
     void Update()
     {
         float playerSpeed = basePlayerSpeed * speedMultiplier;
-        
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            playerSpeed *= sprintMultiplier;
-        }
 
         audioSource.pitch = playerSpeed / basePlayerSpeed;
 
@@ -107,7 +116,7 @@ public class Rat : MonoBehaviour
     void UsePowerUp()
     {
         activePowerUps.Add(new ActivePowerUp(this));
-        powerUp = default;
+        PowerUp = default;
     }
     private void OnCollisionEnter(Collision collision)
     {
