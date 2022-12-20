@@ -115,8 +115,11 @@ public class Rat : MonoBehaviour
     }
     void UsePowerUp()
     {
-        activePowerUps.Add(new ActivePowerUp(this));
-        PowerUp = default;
+        if(PowerUp != null)
+        {
+            activePowerUps.Add(new ActivePowerUp(this));
+            PowerUp = null;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
