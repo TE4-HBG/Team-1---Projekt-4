@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2021200893633708364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8273208378655102226}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8273208378655102226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021200893633708364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: -1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1497715168054540357}
+  - {fileID: 2276685354918665574}
+  - {fileID: 8790902503498785036}
+  m_Father: {fileID: 2358006660907655968}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3166736682268998042
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,12 +59,10 @@ Transform:
   m_GameObject: {fileID: 3166736682268998042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1497715168054540357}
-  - {fileID: 2276685354918665574}
-  - {fileID: 8790902503498785036}
+  - {fileID: 8273208378655102226}
   m_Father: {fileID: 8235711538276433292}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,12 +91,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3224445812211234479}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.26488578, y: 1.5949682, z: -0.9013244}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0.26488578, y: 1.5949682, z: -0.90132445}
   m_LocalScale: {x: -13.578117, y: -13.578117, z: -13.578117}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2358006660907655968}
+  m_Father: {fileID: 8273208378655102226}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7869377970983898843
@@ -143,11 +175,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5195706124031866369}
   m_LocalRotation: {x: -0.086458474, y: 0.93452007, z: 0.073698714, w: -0.3372919}
-  m_LocalPosition: {x: -0.01530233, y: 1.103572, z: 1.155527}
-  m_LocalScale: {x: 9.701479, y: 17.635044, z: 11.170695}
+  m_LocalPosition: {x: -0.01530233, y: 1.1035721, z: 1.155527}
+  m_LocalScale: {x: 9.701479, y: 17.635046, z: 11.170696}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2358006660907655968}
+  m_Father: {fileID: 8273208378655102226}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5673524443254706209
@@ -225,12 +257,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6910096788872348891}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.28686106, y: 1.5949682, z: -0.9013244}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0.28686106, y: 1.5949682, z: -0.90132445}
   m_LocalScale: {x: -13.578117, y: -13.578117, z: -13.578117}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2358006660907655968}
+  m_Father: {fileID: 8273208378655102226}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &753194668894142283
@@ -328,7 +360,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2.41
-  m_Range: 9.5
+  m_Range: 23.13
   m_SpotAngle: 19.07
   m_InnerSpotAngle: 7.5
   m_CookieSize: 10
@@ -369,7 +401,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -433,8 +465,6 @@ MonoBehaviour:
   light: {fileID: 5409332527570723814}
   audioSource: {fileID: 7760913729357550633}
   basePlayerSpeed: 9
-  sprintMultiplier: 0
-  speedMultiplier: 1
 --- !u!114 &6567310030553700854
 MonoBehaviour:
   m_ObjectHideFlags: 0

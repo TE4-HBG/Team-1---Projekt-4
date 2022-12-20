@@ -11,7 +11,8 @@ public class Rat : MonoBehaviour
 {
     public List<ActivePowerUp> activePowerUps = new List<ActivePowerUp>();
     private PowerUp _powerUp;
-
+    //Vector3 motion;
+    //Vector3 lastMotion;
     public void DisablePowerUps()
     {
         for (int i = activePowerUps.Count - 1; i >= 0; i--)
@@ -66,6 +67,7 @@ public class Rat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         float playerSpeed = basePlayerSpeed * speedMultiplier;
 
         audioSource.pitch = playerSpeed / basePlayerSpeed;
@@ -80,11 +82,9 @@ public class Rat : MonoBehaviour
 
         controller.Move(motion);
 
-        
         if (motion != Vector3.zero)
         {
             mesh.transform.forward = Vector3.LerpUnclamped(mesh.transform.forward, motion.normalized, Time.deltaTime * 10f);
-            
         }
         
         if(motion != Vector3.zero && controller.isGrounded)
@@ -98,11 +98,20 @@ public class Rat : MonoBehaviour
         {
             audioSource.Pause();
         }
+        //mesh.transform.localScale = Vector3.one - (((motion - lastMotion) / Time.deltaTime) * 10);     
 
         if (Input.GetKeyDown(KeyCode.Home)) JukeBox.Play(SoundEffect.Secret);
 
+        
+
         UpdateActivePowerUps();
     }
+    /*
+    private void LateUpdate()
+    {
+        lastMotion = motion;
+    }
+    */
     private void UpdateActivePowerUps()
     {
         for (int i = activePowerUps.Count - 1; i >= 0; i--)

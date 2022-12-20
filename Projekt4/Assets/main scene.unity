@@ -4502,6 +4502,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1826671276}
     - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
+      propertyPath: roundTime
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 789051258}
@@ -4517,6 +4521,10 @@ PrefabInstance:
       propertyPath: powerUpSpriteUI
       value: 
       objectReference: {fileID: 413405502}
+    - target: {fileID: 4880506122135957735, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
+      propertyPath: preparationTime
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65c9503615fa0084a919d061a70fe2cd, type: 3}
 --- !u!1001 &8935029590440211380

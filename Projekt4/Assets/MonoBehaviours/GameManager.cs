@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System.IO;
 using Newtonsoft.Json;
 using System.Text;
+using System.Collections;
 //using Random = UnityEngine.Random;
 
 public struct CoolGuy
@@ -330,11 +331,11 @@ public class GameManager : MonoBehaviour
         PowerUpScript powerUpScript = Instantiate(instance.powerUpPrefab).GetComponent<PowerUpScript>();
 
         powerUpScript.powerUp = instance.powerUps[Random.Range(0, instance.powerUps.Length)];
-
         powerUpScript.transform.SetParent(powerUpHolder.powerUpPosition);
-        powerUpScript.transform.localPosition = Vector3.zero;
+        powerUpScript.transform.localPosition = new Vector3(0.0f, -3.8f, 0.0f);
         powerUpScript.transform.localRotation = Quaternion.identity;
-
+        powerUpScript.StartCoroutine(powerUpScript.MoveUp(0.25f, 16));
         powerUpHolder.hasPowerUp = true;
+        
     }
 }

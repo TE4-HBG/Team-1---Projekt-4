@@ -27,7 +27,7 @@ public class RatController : MonoBehaviour
         rb.AddForce(accumulatedForce);
         accumulatedMotion = Vector3.zero;
         accumulatedForce = Vector3.zero;
-
+        
 
         foreach (KeyValuePair<int, Collision> keyValuePair in collisions)
         {
