@@ -7,6 +7,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Text;
 using System.Collections;
+using System.Runtime.InteropServices;
 //using Random = UnityEngine.Random;
 
 public struct CoolGuy
@@ -24,14 +25,18 @@ public struct CoolGuy
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI highscore;
+#if UNITY_WEBGL
+    [DllImport("__Internal")]
+    static extern void AddScore(string name, float score);
+    [DllImport("__Internal")]
+    static extern CoolGuy[] GetScores();
+#else
     static readonly Comparer<CoolGuy> Comparer = Comparer<CoolGuy>.Create((x, y) => y.score.CompareTo(x.score));
+
     const string path = "./swag.json";
     public static void AddScore(string name, float score)
     {
-        List<CoolGuy> scores =
-            File.Exists(path) ?
-            GetScores() :
-            new List<CoolGuy>();
+        List<CoolGuy> scores = GetScores();
         scores.Add(new CoolGuy(name, score));
         scores.Sort(Comparer);
         SetScores(scores);
@@ -39,19 +44,30 @@ public class GameManager : MonoBehaviour
 
     private static List<CoolGuy> GetScores()
     {
-        return JsonConvert.DeserializeObject<List<CoolGuy>>(File.ReadAllText(path));
+        return File.Exists(path) ?
+            JsonConvert.DeserializeObject<List<CoolGuy>>(File.ReadAllText(path)) :
+            new List<CoolGuy>(); 
     }
+    
+    private static void SetScores(List<CoolGuy> scores)
+    {
+        File.WriteAllText(path, JsonConvert.SerializeObject(scores, Formatting.Indented));
+    }
+#endif
     public static string GetScoresString()
     {
-        const int maxCount = 10;
+        const int maxCount = 5;
         StringBuilder stringBuilder = new StringBuilder();
 
         var scores = GetScores();
-        scores.Sort(Comparer);
+#if UNITY_WEBGL
+        var length = scores.Length > maxCount ? maxCount : scores.Length;
+#else
         var length = scores.Count > maxCount ? maxCount : scores.Count;
-        for(int i = 0; i < length; i++) 
+#endif
+        for (int i = 0; i < length; i++)
         {
-            stringBuilder.Append(i + 1 );
+            stringBuilder.Append(i + 1);
             stringBuilder.Append(". ");
             stringBuilder.Append(scores[i].name);
             stringBuilder.Append(": ");
@@ -60,10 +76,6 @@ public class GameManager : MonoBehaviour
         }
 
         return stringBuilder.ToString();
-    }
-    private static void SetScores(List<CoolGuy> scores)
-    {
-        File.WriteAllText(path, JsonConvert.SerializeObject(scores, Formatting.Indented));
     }
     public string playerName;
     public PlaceableObject[] placeableObjects;
@@ -87,21 +99,21 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI powerUpNameUI;
     public Image powerUpSpriteUI;
     public List<Level> levels;
-    #region PREFABS
+#region PREFABS
     public GameObject levelPrefab;
     public GameObject ratPrefab;
     public GameObject godPrefab;
     public GameObject powerUpPrefab;
-    #endregion
+#endregion
     public Rat rat;
     public God god;
     public static void NextLevel(Vector3 offset)
     {
-        #region Calculate score
+#region Calculate score
         CalculateScore();
-        #endregion
+#endregion
 
-        #region Create next level
+#region Create next level
         Level current = instance.levels.Last();
 
 
@@ -114,7 +126,7 @@ public class GameManager : MonoBehaviour
         UpdateGod();
 
         SetRatActivity(false);
-        #endregion
+#endregion
         JukeBox.Play(SoundEffect.Goal);
         StartPreparation();
 
@@ -149,7 +161,7 @@ public class GameManager : MonoBehaviour
         instance.PowerUpSpawnTimer.paused = false;
 
         JukeBox.Play(Song.Level);
-
+        JukeBox.SetPitch(1f);
 
         static void GameOverTimer() => GameOver(GameOverReason.TimeRanOut(instance));
     }
@@ -158,7 +170,7 @@ public class GameManager : MonoBehaviour
         instance.PowerUpSpawnTimer.paused = true;
         instance.gameTimer.Set(instance.preparationTime, StartRound);
         JukeBox.Play(Song.Preparations);
-
+        JukeBox.SetPitch(1f);
     }
     public void UpdateTimer()
     {
@@ -197,8 +209,9 @@ public class GameManager : MonoBehaviour
     {
         if (!string.IsNullOrWhiteSpace(instance.playerName))
         {
+            
             instance.gameOverUI.SetActive(false);
-            AddScore(instance.playerName, instance.score);
+            AddScore(instance.playerName.Trim(), instance.score);
 
             JukeBox.SetPitch(1f);
             Score = 0f;
@@ -210,7 +223,6 @@ public class GameManager : MonoBehaviour
             Level level = Instantiate(instance.levelPrefab).GetComponent<Level>();
             instance.levels.Add(level);
             UpdateGod();
-            RemoveRat();
 
             StartPreparation();
         }
@@ -240,6 +252,8 @@ public class GameManager : MonoBehaviour
     }
     public static void RemoveRat()
     {
+        instance.rat.DisablePowerUps();
+        instance.rat.PowerUp = null;
         GameObject rat = instance.rat.gameObject;
         Destroy(rat);
     }
@@ -287,11 +301,11 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver(GameOverReason gameOverReason)
     {
-        instance.rat.DisablePowerUps();
-        instance.rat.PowerUp = null;
+
+        RemoveRat();
         instance.gameTimer.paused = true;
         instance.PowerUpSpawnTimer.paused = true;
-        JukeBox.ChangePitchOverTime(newPitch: -0.25f, time: 3f, 256);
+        JukeBox.ChangePitchOverTime(newPitch: 0f, time: 3f, 256 );
         Debug.Log("GAME OVER!");
         Debug.Log($"Reason: {gameOverReason.info}");
         Debug.Log($"Caller: {gameOverReason.caller}");

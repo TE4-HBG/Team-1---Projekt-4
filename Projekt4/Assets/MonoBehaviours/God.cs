@@ -197,14 +197,14 @@ public class God : MonoBehaviour
     private static void PreviewExtra(GameObject gameObject)
     {
         Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
-
+        
         MeshRenderer[] meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
-
 
         for (int i = 0; i < meshRenderers.Length; i++)
         {
-            Material mat = meshRenderers[i].material;
             meshRenderers[i].shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            /*
+            Material mat = meshRenderers[i].material;
             mat.SetInt("_DstBlend", 10);
             mat.SetInt("_SrcBlend", 5);
             mat.SetFloat("_Mode", 2);
@@ -215,8 +215,10 @@ public class God : MonoBehaviour
             mat.renderQueue = 3000;
             Color color = mat.GetColor("_Color");
             color.a *= 0.5f;
-            meshRenderers[i].material.SetColor("_Color", color);
+            mat.SetColor("_Color", color);
+            */
         }
+
         for (int i = 0; i < colliders.Length; i++)
         {
             colliders[i].enabled = false;

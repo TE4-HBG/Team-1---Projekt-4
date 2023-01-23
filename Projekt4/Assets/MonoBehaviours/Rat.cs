@@ -6,12 +6,13 @@ using System;
 using System.ComponentModel;
 using UnityEngine.Experimental.GlobalIllumination;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class Rat : MonoBehaviour
 {
     public List<ActivePowerUp> activePowerUps = new List<ActivePowerUp>();
     private PowerUp _powerUp;
-    //Vector3 motion;
+    Vector2 input;
     //Vector3 lastMotion;
     public void DisablePowerUps()
     {
@@ -29,13 +30,13 @@ public class Rat : MonoBehaviour
     public PowerUp PowerUp
     {
         get { return _powerUp; }
-        set 
+        set
         {
             _powerUp = value;
             //if(powerUp != null) Debug.Log("Rat picked up " + _powerUp.name);
 
             // do shit here!
-            if(_powerUp != null)
+            if (_powerUp != null)
             {
                 GameManager.instance.powerUpSpriteUI.gameObject.SetActive(false);
                 GameManager.instance.powerUpSpriteUI.sprite = _powerUp.sprite;
@@ -67,18 +68,12 @@ public class Rat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         float playerSpeed = basePlayerSpeed * speedMultiplier;
 
         audioSource.pitch = playerSpeed / basePlayerSpeed;
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            UsePowerUp();
-        }
-
-
-        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(Input.GetAxisRaw("Horizontal") , 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector3 motion = playerSpeed * Time.deltaTime * new Vector3(input.x, 0, input.y).normalized;
 
         controller.Move(motion);
 
@@ -86,8 +81,8 @@ public class Rat : MonoBehaviour
         {
             mesh.transform.forward = Vector3.LerpUnclamped(mesh.transform.forward, motion.normalized, Time.deltaTime * 10f);
         }
-        
-        if(motion != Vector3.zero && controller.isGrounded)
+
+        if (motion != Vector3.zero && controller.isGrounded)
         {
             if (!audioSource.isPlaying)
             {
@@ -100,9 +95,9 @@ public class Rat : MonoBehaviour
         }
         //mesh.transform.localScale = Vector3.one - (((motion - lastMotion) / Time.deltaTime) * 10);     
 
-        if (Input.GetKeyDown(KeyCode.Home)) JukeBox.Play(SoundEffect.Secret);
+        if (Keyboard.current.homeKey.wasPressedThisFrame) JukeBox.Play(SoundEffect.Secret);
 
-        
+
 
         UpdateActivePowerUps();
     }
@@ -122,17 +117,12 @@ public class Rat : MonoBehaviour
             }
         }
     }
-    void UsePowerUp()
-    {
-        if(PowerUp != null)
-        {
-            activePowerUps.Add(new ActivePowerUp(this));
-            PowerUp = null;
-        }
-    }
+    public void Input_Move(InputAction.CallbackContext callbackContext) { input = callbackContext.ReadValue<Vector2>(); Debug.Log(input); }
+    public void Input_UsePowerUp(InputAction.CallbackContext context) { if (context.phase == InputActionPhase.Performed && PowerUp != null) { activePowerUps.Add(new ActivePowerUp(this)); PowerUp = null; } }
+    public void Input_Secret(InputAction.CallbackContext context) { if (context.phase == InputActionPhase.Performed) JukeBox.Play(SoundEffect.Secret); }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == Layer.TileWalkable)
+        if (collision.gameObject.layer == Layer.TileWalkable)
         {
             currentTile = collision.transform.parent.gameObject;
         }
